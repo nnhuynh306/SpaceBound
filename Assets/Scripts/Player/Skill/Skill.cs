@@ -57,5 +57,4 @@ public class Skill: MonoBehaviour
     public void updateUI() {
         UI.changeCooldownUI(timer, cooldownTime);
     }
-
 }
