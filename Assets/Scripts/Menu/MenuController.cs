@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -16,13 +17,17 @@ public class MenuController : MonoBehaviour
         
     }
 
-    void StartGame() { }
+    public void StartGame() { }
 
-    void LoadGame() { }
+    public void LoadGame() { }
 
-    void OptionMenu() { }
+    public void OptionMenu() { }
 
-    void Cancel() { }
+    public void Cancel() { }
+
+    public void Click() {
+        animator.SetTrigger("Click");
+    }
 
 
 }
