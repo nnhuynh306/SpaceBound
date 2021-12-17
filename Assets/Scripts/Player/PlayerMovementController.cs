@@ -39,6 +39,13 @@ public class PlayerMovementController : MonoBehaviour
 
     private CircleCollider2D bodyCollider;
 
+    private bool isKnockingBack = false;
+
+    private float knockbackForce = 5;
+
+    private float knockBackTimer = 0f;
+
+    private float knockBackTime = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -70,10 +77,22 @@ public class PlayerMovementController : MonoBehaviour
     {
         animationController.updateYVelocity(rigidBody.velocity.y);
         updateYVelocity();
+
+        knockbackCheck();
     }
 
     void updateYVelocity() {
         animationController.updateYVelocity(rigidBody.velocity.y);
+    }
+
+    void knockbackCheck() {
+        if (isKnockingBack) {
+            knockBackTimer += Time.deltaTime;
+
+            if (knockBackTimer > knockBackTime) {
+                recoverAfterKnockback();
+            }
+        }
     }
 
     private void FixedUpdate() {
@@ -124,6 +143,10 @@ public class PlayerMovementController : MonoBehaviour
         return time * (isCrouching? crounchingBaseJumpForce: baseJumpForce);
     }
 
+    float calculateBaseForce() {
+         return baseJumpChargeTime * (isCrouching? crounchingBaseJumpForce: baseJumpForce);
+    }
+
     private void CrouchEnter(InputAction.CallbackContext context) {
         crouch();
     }
@@ -141,6 +164,18 @@ public class PlayerMovementController : MonoBehaviour
     public void grounded() {
         isJumping = false;
         animationController.grounded();
+
+        if (!isKnockingBack && !inputEnabled) {
+            enableInput();
+        }
+    }
+
+    private void recoverAfterKnockback() {
+        isKnockingBack = false;
+        knockBackTimer = 0;
+
+        playerInput.Enable();
+        animationController.stopHurt();
     }
 
     public void jump(float jumpForce) {
@@ -152,12 +187,20 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    public void jumpWithoutCharge() {
+         if (!isJumping) {
+            rigidBody.AddForce(Vector2.up * calculateBaseForce(), ForceMode2D.Impulse);
+            
+            isJumping = true;
+            animationController.jumping();
+        }
+    } 
+
     public void crouch() {
         if (!isCrouching) {
             isCrouching = true;
             
             headCollider.isTrigger = true;
-            Debug.Log("crouch");
             animationController.crouch();
         }
     }
@@ -167,7 +210,6 @@ public class PlayerMovementController : MonoBehaviour
             isCrouching = false;
 
             headCollider.isTrigger = false;
-            Debug.Log("stand up");
             animationController.standUp();
         }
     }
@@ -185,49 +227,49 @@ public class PlayerMovementController : MonoBehaviour
 		transform.localScale = theScale;
     }
 
+    public void knockback(GameObject other) {
+        Vector2 difference = (transform.position - other.transform.position).normalized;
+        Vector2 force = difference * knockbackForce;
+        rigidBody.AddForce(force, ForceMode2D.Impulse);
+
+        isKnockingBack = true;
+
+        disableInput();
+        animationController.hurt();
+    }
+
     //--- ON TRIGGER ---------------------------------------------------------------------------- //
-    
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (detectChildTrigger(other)) {
-            return;
-        }
 
-         if (other.gameObject.CompareTag("Ground")) {
-            canStandUp = false;
-        }
+    public void OnTriggerEnterGround() {
+        canStandUp = false;
     }
 
-    private void OnTriggerStay2D(Collider2D other) {
-        if (detectChildTrigger(other)) {
-            return;
-        }
-
-         if (other.gameObject.CompareTag("Ground")) {
-            canStandUp = false;
-        }
+    public void OnTriggerStayGround() {
+        canStandUp = false;
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        if (detectChildTrigger(other)) {
-            return;
-        }
-
-        if (other.gameObject.CompareTag("Ground")) {
-            if (isCrouching) {
-                canStandUp = true;
-                if (playerInput.Player.Crouch.phase == InputActionPhase.Waiting) {
-                    standUp();
-                }
+    public void OnTriggerExitGround() {
+        if (isCrouching) {
+            canStandUp = true;
+            if (playerInput.Player.Crouch.phase == InputActionPhase.Waiting) {
+                standUp();
             }
         }
     }
 
+    //---- OTHER ---------------------------------------------------------------------------- //
 
-    private bool detectChildTrigger(Collider2D other) {
-        if (other.gameObject.CompareTag("Player's Detector")) {
-            return true;
-        } else {
-            return false;
+    private void disableInput() {
+        playerInput.Player.Disable();
+    }
+
+    public void enableInput() {
+        playerInput.Player.Enable();
+    }
+
+    private bool inputEnabled {
+        get {
+            return playerInput.Player.enabled;
         }
     }
 }
