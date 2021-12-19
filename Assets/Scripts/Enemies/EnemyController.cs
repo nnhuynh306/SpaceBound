@@ -8,6 +8,10 @@ public class EnemyController : MonoBehaviour
 
     private bool isKilled = false;
 
+    private Rigidbody2D rigidBody;
+
+    public GameObject deathPrefab;
+
     public bool IsKilled {
         get {
             return isKilled;
@@ -17,7 +21,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -30,15 +34,18 @@ public class EnemyController : MonoBehaviour
         Debug.Log("Kill enemy");
         isKilled = true;
         animator.SetTrigger("Death");
-        DisableColliders();
+        disable();
     }
 
-    public void DisableColliders()
-    {
-        foreach (Collider2D c in GetComponents<Collider2D>())
-        {  
-            c.enabled = false;
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Player")) {
+            other.gameObject.GetComponent<PlayerController>().hitEnemy(gameObject);
         }
     }
 
+
+    private void disable() {
+        Instantiate(deathPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
 }

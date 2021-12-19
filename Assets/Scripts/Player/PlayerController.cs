@@ -19,9 +19,13 @@ public class PlayerController : MonoBehaviour
     }
 
     public void killEnemy(GameObject enemy) {
-        enemy.GetComponent<EnemyController>().killed();
-        playerMovementController.grounded();
-        playerMovementController.jumpWithoutCharge();
+        EnemyController enemyController =  enemy.GetComponent<EnemyController>();
+        Debug.Log(!enemyController.IsKilled);
+        if (!enemyController.IsKilled) {
+            enemyController.killed();
+            playerMovementController.grounded();
+            playerMovementController.jumpWithoutCharge();
+        }
     }
 
      //--- ON TRIGGER ---------------------------------------------------------------------------- //
@@ -56,13 +60,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.CompareTag("Enemy")) {
-            hitEnemy(other.gameObject);
-        }
-    }
-
-
     private bool detectChildTrigger(Collider2D other) {
         if (other.gameObject.CompareTag("Player's Detector")) {
             return true;
@@ -71,7 +68,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void hitEnemy(GameObject enemy) {
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Enemy")) {
+            hitEnemy(other.gameObject);
+        }
+    }
+
+    public void hitEnemy(GameObject enemy) {
         EnemyController enemyController = enemy.GetComponent<EnemyController>();
 
         if (!enemyController.IsKilled) {
@@ -83,4 +86,5 @@ public class PlayerController : MonoBehaviour
     private void killed() {
         Debug.Log("Killed");
     }
+
 }

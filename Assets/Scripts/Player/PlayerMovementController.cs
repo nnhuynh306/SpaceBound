@@ -47,6 +47,17 @@ public class PlayerMovementController : MonoBehaviour
 
     private float knockBackTime = 1f;
 
+    private bool movementDisabled = false;
+    
+    private bool MovementDisabled {
+        get {
+            return movementDisabled;
+        }
+        set {
+            movementDisabled = value;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -155,30 +166,26 @@ public class PlayerMovementController : MonoBehaviour
         standUp();
     }
 
-    void disableMovement() {
-
-    }
-
     //-- MOVEMENT ---------------------------------------------------------------------------- //
 
     public void grounded() {
         isJumping = false;
         animationController.grounded();
-
-        if (!isKnockingBack && !inputEnabled) {
-            enableInput();
-        }
     }
 
     private void recoverAfterKnockback() {
         isKnockingBack = false;
         knockBackTimer = 0;
 
-        playerInput.Enable();
+        enableMovement();
         animationController.stopHurt();
+        enableLethalInteraction();
     }
 
     public void jump(float jumpForce) {
+        if (MovementDisabled) {
+            return;
+        }
         if (!isJumping) {
             rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             
@@ -188,7 +195,10 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     public void jumpWithoutCharge() {
-         if (!isJumping) {
+        if (MovementDisabled) {
+            return;
+        }
+        if (!isJumping) {
             rigidBody.AddForce(Vector2.up * calculateBaseForce(), ForceMode2D.Impulse);
             
             isJumping = true;
@@ -197,6 +207,9 @@ public class PlayerMovementController : MonoBehaviour
     } 
 
     public void crouch() {
+        if (MovementDisabled) {
+            return;
+        }
         if (!isCrouching) {
             isCrouching = true;
             
@@ -214,10 +227,6 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
     
-    void toggleJumping() {
-        isJumping = !isJumping;
-        animationController.setJumping(isJumping);
-    }
 
     void flip() {
         facingRight = !facingRight;
@@ -234,8 +243,13 @@ public class PlayerMovementController : MonoBehaviour
 
         isKnockingBack = true;
 
-        disableInput();
+        disableMovement();
         animationController.hurt();
+        disableLethalInteraction();
+    }
+
+    public void leaveGround() {
+        isJumping = true;
     }
 
     //--- ON TRIGGER ---------------------------------------------------------------------------- //
@@ -259,17 +273,21 @@ public class PlayerMovementController : MonoBehaviour
 
     //---- OTHER ---------------------------------------------------------------------------- //
 
-    private void disableInput() {
+    private void disableMovement() {
+        MovementDisabled = true;
         playerInput.Player.Disable();
     }
 
-    public void enableInput() {
+    public void enableMovement() {
+        MovementDisabled = false;
         playerInput.Player.Enable();
     }
 
-    private bool inputEnabled {
-        get {
-            return playerInput.Player.enabled;
-        }
+    public void disableLethalInteraction() {
+        Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("Enemy"), true);
+    }
+
+    public void enableLethalInteraction() {
+        Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("Enemy"), false);
     }
 }
