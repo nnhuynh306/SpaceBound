@@ -39,6 +39,32 @@ public class PlayerMovementController : MonoBehaviour
 
     private CircleCollider2D bodyCollider;
 
+    private bool isKnockingBack = false;
+
+    private float knockbackForce = 5;
+
+    private float knockBackTimer = 0f;
+
+    private float knockBackTime = 1f;
+
+    public float recoverTimeAfterKnockback = 1f;
+
+    private bool movementDisabled = false;
+    
+    private bool MovementDisabled {
+        get {
+            return movementDisabled;
+        }
+        set {
+            movementDisabled = value;
+        }
+    }
+
+    private SpriteBlinkingController spriteBlinkingController;
+
+    public string[] lethalLayers = {"Enemy"};
+
+    private PlayerAudioController playerAudioController;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +76,10 @@ public class PlayerMovementController : MonoBehaviour
         headCollider = GetComponent<BoxCollider2D>();
 
         bodyCollider = GetComponent<CircleCollider2D>();
+
+        spriteBlinkingController = GetComponent<SpriteBlinkingController>();
+
+        playerAudioController = GetComponent<PlayerAudioController>();
 
         assignInput();
     }
@@ -70,10 +100,22 @@ public class PlayerMovementController : MonoBehaviour
     {
         animationController.updateYVelocity(rigidBody.velocity.y);
         updateYVelocity();
+
+        knockbackCheck();
     }
 
     void updateYVelocity() {
         animationController.updateYVelocity(rigidBody.velocity.y);
+    }
+
+    void knockbackCheck() {
+        if (isKnockingBack) {
+            knockBackTimer += Time.deltaTime;
+
+            if (knockBackTimer > knockBackTime) {
+                recoverAfterKnockback();
+            }
+        }
     }
 
     private void FixedUpdate() {
@@ -87,6 +129,7 @@ public class PlayerMovementController : MonoBehaviour
         position.x += userXAxisInput * (isCrouching? crounchingRunSpeed: runSpeed) * deltaTime;
         
         moveAnimationCheck();
+        moveAudioCheck();
         flipCheck();
         
         rigidBody.position = position;
@@ -108,6 +151,18 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    private void moveAudioCheck() {
+        if (Mathf.Abs(userXAxisInput) > 0 && !isJumping) {
+            if (isCrouching) {
+                playerAudioController.crouchRunning();
+            } else {
+                playerAudioController.running();
+            }
+        } else {
+            playerAudioController.stopRunning();
+        }
+    }
+
     //-- INPUT SYSTEM ---------------------------------------------------------------------------- //
 
     void JumpEnter(InputAction.CallbackContext context) {
@@ -124,6 +179,10 @@ public class PlayerMovementController : MonoBehaviour
         return time * (isCrouching? crounchingBaseJumpForce: baseJumpForce);
     }
 
+    float calculateBaseForce() {
+         return baseJumpChargeTime * (isCrouching? crounchingBaseJumpForce: baseJumpForce);
+    }
+
     private void CrouchEnter(InputAction.CallbackContext context) {
         crouch();
     }
@@ -132,32 +191,56 @@ public class PlayerMovementController : MonoBehaviour
         standUp();
     }
 
-    void disableMovement() {
-
-    }
-
     //-- MOVEMENT ---------------------------------------------------------------------------- //
 
     public void grounded() {
         isJumping = false;
+        playerAudioController.grounded();
         animationController.grounded();
     }
 
+    private void recoverAfterKnockback() {
+        isKnockingBack = false;
+        knockBackTimer = 0;
+
+        enableMovement();
+        animationController.stopHurt();
+        Invoke("enableLethalInteraction", recoverTimeAfterKnockback);
+    }
+
     public void jump(float jumpForce) {
+        if (MovementDisabled) {
+            return;
+        }
         if (!isJumping) {
             rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             
             isJumping = true;
             animationController.jumping();
+            playerAudioController.jump();
         }
     }
 
+    public void jumpWithoutCharge() {
+        if (MovementDisabled) {
+            return;
+        }
+        if (!isJumping) {
+            rigidBody.AddForce(Vector2.up * calculateBaseForce(), ForceMode2D.Impulse);
+            
+            isJumping = true;
+            animationController.jumping();
+        }
+    } 
+
     public void crouch() {
+        if (MovementDisabled) {
+            return;
+        }
         if (!isCrouching) {
             isCrouching = true;
             
             headCollider.isTrigger = true;
-            Debug.Log("crouch");
             animationController.crouch();
         }
     }
@@ -167,15 +250,10 @@ public class PlayerMovementController : MonoBehaviour
             isCrouching = false;
 
             headCollider.isTrigger = false;
-            Debug.Log("stand up");
             animationController.standUp();
         }
     }
     
-    void toggleJumping() {
-        isJumping = !isJumping;
-        animationController.setJumping(isJumping);
-    }
 
     void flip() {
         facingRight = !facingRight;
@@ -185,49 +263,64 @@ public class PlayerMovementController : MonoBehaviour
 		transform.localScale = theScale;
     }
 
+    public void knockback(GameObject other) {
+        Vector2 difference = (transform.position - other.transform.position).normalized;
+        Vector2 force = difference * knockbackForce;
+        rigidBody.AddForce(force, ForceMode2D.Impulse);
+
+        isKnockingBack = true;
+
+        disableMovement();
+        animationController.hurt();
+        disableLethalInteraction();
+    }
+
+    public void leaveGround() {
+        isJumping = true;
+    }
+
     //--- ON TRIGGER ---------------------------------------------------------------------------- //
-    
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (detectChildTrigger(other)) {
-            return;
-        }
 
-         if (other.gameObject.CompareTag("Ground")) {
-            canStandUp = false;
-        }
+    public void OnTriggerEnterGround() {
+        canStandUp = false;
     }
 
-    private void OnTriggerStay2D(Collider2D other) {
-        if (detectChildTrigger(other)) {
-            return;
-        }
-
-         if (other.gameObject.CompareTag("Ground")) {
-            canStandUp = false;
-        }
+    public void OnTriggerStayGround() {
+        canStandUp = false;
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        if (detectChildTrigger(other)) {
-            return;
-        }
-
-        if (other.gameObject.CompareTag("Ground")) {
-            if (isCrouching) {
-                canStandUp = true;
-                if (playerInput.Player.Crouch.phase == InputActionPhase.Waiting) {
-                    standUp();
-                }
+    public void OnTriggerExitGround() {
+        if (isCrouching) {
+            canStandUp = true;
+            if (playerInput.Player.Crouch.phase == InputActionPhase.Waiting) {
+                standUp();
             }
         }
     }
 
+    //---- OTHER ---------------------------------------------------------------------------- //
 
-    private bool detectChildTrigger(Collider2D other) {
-        if (other.gameObject.CompareTag("Player's Detector")) {
-            return true;
-        } else {
-            return false;
+    private void disableMovement() {
+        MovementDisabled = true;
+        playerInput.Player.Disable();
+    }
+
+    public void enableMovement() {
+        MovementDisabled = false;
+        playerInput.Player.Enable();
+    }
+
+    public void disableLethalInteraction() {
+        foreach(string layerName in lethalLayers) {
+            Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer(layerName), true);
         }
+        spriteBlinkingController.startBlinking();
+    }
+
+    public void enableLethalInteraction() {
+         foreach(string layerName in lethalLayers) {
+            Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer(layerName), false);
+        }
+        spriteBlinkingController.stopBlinking();
     }
 }

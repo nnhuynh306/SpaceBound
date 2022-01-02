@@ -20,12 +20,10 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void jumping() {
         animator.SetBool("Jumping", true);
-                Debug.Log("jump");
     }
 
     public void grounded() {
         animator.SetBool("Jumping", false);
-        Debug.Log("grounded");
     }
 
     public void setJumping(bool isJumping) {
@@ -50,5 +48,13 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void standUp() {
         animator.SetBool("Crouching", false);
+    }
+
+    public void hurt() {
+        animator.SetBool("Hurt", true);
+    }
+
+    public void stopHurt() {
+        animator.SetBool("Hurt", false);
     }
 }
