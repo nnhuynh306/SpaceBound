@@ -7,6 +7,10 @@ public abstract class CollectableController : MonoBehaviour
     public Animator animator;
 
     public string animationTriggerName = "Interacted";
+
+    public string collectedSound;
+
+    public GameObject collectedEffectPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +29,16 @@ public abstract class CollectableController : MonoBehaviour
         if (other.gameObject.CompareTag("Player")) {
             applyOnPlayer(other.gameObject);
             playAnimation();
+            playAudio();
         }
     }
 
     private void playAnimation() {
-        animator.SetTrigger(animationTriggerName);
+        Instantiate(collectedEffectPrefab, gameObject.transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+
+    private void playAudio() {
+        AudioManager.Instance.play(collectedSound);
     }
 }

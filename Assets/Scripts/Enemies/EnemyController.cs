@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
 
     public GameObject deathPrefab;
 
+    public string deathSound = "EnemyDeath";
+
     public bool IsKilled {
         get {
             return isKilled;
@@ -45,6 +47,7 @@ public class EnemyController : MonoBehaviour
 
 
     private void disable() {
+        AudioManager.Instance.play(deathSound);
         Instantiate(deathPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

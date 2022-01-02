@@ -47,6 +47,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private float knockBackTime = 1f;
 
+    public float recoverTimeAfterKnockback = 1f;
+
     private bool movementDisabled = false;
     
     private bool MovementDisabled {
@@ -58,6 +60,12 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    private SpriteBlinkingController spriteBlinkingController;
+
+    public string[] lethalLayers = {"Enemy"};
+
+    private PlayerAudioController playerAudioController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +76,10 @@ public class PlayerMovementController : MonoBehaviour
         headCollider = GetComponent<BoxCollider2D>();
 
         bodyCollider = GetComponent<CircleCollider2D>();
+
+        spriteBlinkingController = GetComponent<SpriteBlinkingController>();
+
+        playerAudioController = GetComponent<PlayerAudioController>();
 
         assignInput();
     }
@@ -117,6 +129,7 @@ public class PlayerMovementController : MonoBehaviour
         position.x += userXAxisInput * (isCrouching? crounchingRunSpeed: runSpeed) * deltaTime;
         
         moveAnimationCheck();
+        moveAudioCheck();
         flipCheck();
         
         rigidBody.position = position;
@@ -135,6 +148,18 @@ public class PlayerMovementController : MonoBehaviour
             flip();
         } else if (!facingRight && userXAxisInput > 0) {
             flip();
+        }
+    }
+
+    private void moveAudioCheck() {
+        if (Mathf.Abs(userXAxisInput) > 0 && !isJumping) {
+            if (isCrouching) {
+                playerAudioController.crouchRunning();
+            } else {
+                playerAudioController.running();
+            }
+        } else {
+            playerAudioController.stopRunning();
         }
     }
 
@@ -170,6 +195,7 @@ public class PlayerMovementController : MonoBehaviour
 
     public void grounded() {
         isJumping = false;
+        playerAudioController.grounded();
         animationController.grounded();
     }
 
@@ -179,7 +205,7 @@ public class PlayerMovementController : MonoBehaviour
 
         enableMovement();
         animationController.stopHurt();
-        enableLethalInteraction();
+        Invoke("enableLethalInteraction", recoverTimeAfterKnockback);
     }
 
     public void jump(float jumpForce) {
@@ -191,6 +217,7 @@ public class PlayerMovementController : MonoBehaviour
             
             isJumping = true;
             animationController.jumping();
+            playerAudioController.jump();
         }
     }
 
@@ -284,10 +311,16 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     public void disableLethalInteraction() {
-        Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("Enemy"), true);
+        foreach(string layerName in lethalLayers) {
+            Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer(layerName), true);
+        }
+        spriteBlinkingController.startBlinking();
     }
 
     public void enableLethalInteraction() {
-        Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("Enemy"), false);
+         foreach(string layerName in lethalLayers) {
+            Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer(layerName), false);
+        }
+        spriteBlinkingController.stopBlinking();
     }
 }

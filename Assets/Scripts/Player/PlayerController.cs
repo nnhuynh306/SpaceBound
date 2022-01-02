@@ -72,6 +72,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy")) {
             hitEnemy(other.gameObject);
         }
+        if (other.gameObject.CompareTag("LethalObject")) {
+            hitLethalObject(other.gameObject);
+            Debug.Log("hit spike");
+        }
     }
 
     public void hitEnemy(GameObject enemy) {
@@ -81,6 +85,10 @@ public class PlayerController : MonoBehaviour
             playerMovementController.knockback(enemy);
             killed();
         }
+    }
+
+    public void hitLethalObject(GameObject gameObject) {
+        playerMovementController.knockback(gameObject);
     }
 
     private void killed() {

@@ -144,3 +144,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7440156850690444921}
   animationTriggerName: Interacted
+  collectedSound: 
+  collectedEffectPrefab: {fileID: 2023331950670526085, guid: cb520db11fa9b9a44b195fad0954aceb, type: 3}

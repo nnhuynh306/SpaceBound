@@ -118,6 +118,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6609416606215035524}
   animationTriggerName: Interacted
+  collectedSound: 
+  collectedEffectPrefab: {fileID: 2023331950670526085, guid: cb520db11fa9b9a44b195fad0954aceb, type: 3}
   health: 1
 --- !u!61 &6609416606215035579
 BoxCollider2D:
