@@ -15,8 +15,20 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
+    private Sound findSound(String name) {
+        if (sounds != null) {
+            return Array.Find(sounds, sound => sound.name == name);
+        } else {
+            return null;
+        }
+    }
+
     public void play(string name) {
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        Sound sound = findSound(name);
+
+        if (sound == null) {
+            return;
+        }
 
         sound.source.clip = sound.clip;
         sound.source.volume = sound.volume;
@@ -32,7 +44,7 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     public void playOneAtATime(string name) {
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        Sound sound = findSound(name);
 
         if (sound == null) {
             return;
@@ -50,13 +62,21 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     public void stop(string name) {
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        Sound sound = findSound(name);
+
+        if (sound == null) {
+            return;
+        }
 
         sound.source.Stop();  
     }
 
     public void play(string name, float volume) {
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        Sound sound = findSound(name);
+
+        if (sound == null) {
+            return;
+        }
 
         sound.source.volume = volume;
         sound.source.clip = sound.clip;
@@ -68,7 +88,11 @@ public class AudioManager : Singleton<AudioManager>
     }
 
      public void playOneAtATime(string name, float volume) {
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        Sound sound = findSound(name);
+
+        if (sound == null) {
+            return;
+        }
 
         sound.source.clip = sound.clip;
         sound.source.volume = volume;
@@ -82,7 +106,11 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     public float getSoundLength(String name) {
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        Sound sound = findSound(name);
+
+        if (sound == null) {
+            return 0;
+        }
 
         return sound.clip.length;
     }
