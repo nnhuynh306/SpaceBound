@@ -45,12 +45,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: 3ceea5b8be58fbb4da08011b332ca464, type: 3}
+    clip: {fileID: 8300000, guid: 7fc4a159011dc44048889e9a303227e6, type: 3}
     volume: 1
     pitch: 1
     output: {fileID: 0}
     source: {fileID: 0}
-    loop: 0
+    loop: 1
   - name: PlayerRunning
     clip: {fileID: 8300000, guid: d88e6bd959ff29740b3eed6ab266ea36, type: 3}
     volume: 1
