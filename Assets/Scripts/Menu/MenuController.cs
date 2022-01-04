@@ -19,18 +19,19 @@ public class MenuController : MonoBehaviour
     }
 
     public void StartGame() {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Level_1");
     }
 
     public void SetName() {
-        SceneManager.LoadScene("ChooseName");
+       
     }
 
     public void LoadGame() { }
 
     public void OptionMenu() { }
 
-    public void Cancel() {
+    public void Exit() {
+        Debug.Log("Quit");
         Application.Quit();
     }
 
