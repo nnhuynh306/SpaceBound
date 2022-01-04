@@ -5,11 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     PlayerMovementController playerMovementController;
+
+    PlayerHealthController playerHealthController;
+
+    private bool isInvincible = false;
     
     // Start is called before the first frame update
     void Start()
     {
         playerMovementController = GetComponent<PlayerMovementController>();
+        playerHealthController = GetComponent<PlayerHealthController>();
     }
 
     // Update is called once per frame
@@ -69,13 +74,18 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.CompareTag("Enemy")) {
+        OnDamagedCheck(other);
+    }
+
+    private void OnDamagedCheck(Collision2D other) {
+       if (!isInvincible) {
+            if (other.gameObject.CompareTag("Enemy")) {
             hitEnemy(other.gameObject);
-        }
-        if (other.gameObject.CompareTag("LethalObject")) {
-            hitLethalObject(other.gameObject);
-            Debug.Log("hit spike");
-        }
+            }
+            if (other.gameObject.CompareTag("LethalObject")) {
+                hitLethalObject(other.gameObject);
+            }
+       }
     }
 
     public void hitEnemy(GameObject enemy) {
@@ -83,16 +93,24 @@ public class PlayerController : MonoBehaviour
 
         if (!enemyController.IsKilled) {
             playerMovementController.knockback(enemy);
-            killed();
+            playerHealthController.damaged(1);
         }
     }
 
     public void hitLethalObject(GameObject gameObject) {
         playerMovementController.knockback(gameObject);
+        playerHealthController.damaged(1);
     }
 
     private void killed() {
         Debug.Log("Killed");
     }
+    
+    public void invincible() {
+        isInvincible = true;
+    }
 
+    public void vincible() {
+        isInvincible = false;
+    }
 }

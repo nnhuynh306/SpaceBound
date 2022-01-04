@@ -66,6 +66,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private PlayerAudioController playerAudioController;
 
+    private PlayerController playerController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +82,8 @@ public class PlayerMovementController : MonoBehaviour
         spriteBlinkingController = GetComponent<SpriteBlinkingController>();
 
         playerAudioController = GetComponent<PlayerAudioController>();
+
+        playerController = GetComponent<PlayerController>();
 
         assignInput();
     }
@@ -200,6 +204,8 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     private void recoverAfterKnockback() {
+        playerController.vincible();
+
         isKnockingBack = false;
         knockBackTimer = 0;
 
@@ -264,6 +270,9 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     public void knockback(GameObject other) {
+
+        playerController.invincible();
+
         Vector2 difference = (transform.position - other.transform.position).normalized;
         Vector2 force = difference * knockbackForce;
         rigidBody.AddForce(force, ForceMode2D.Impulse);

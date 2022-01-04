@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4301373333494993305}
   - component: {fileID: 7336035167118871669}
   - component: {fileID: 3724758913623151126}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyStomper
-  m_TagString: Untagged
+  m_TagString: Stomp Detector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,6 +110,9 @@ GameObject:
   - component: {fileID: 4625069240771233857}
   - component: {fileID: 395110382}
   - component: {fileID: 1210927302}
+  - component: {fileID: 1788134418}
+  - component: {fileID: 1788134428}
+  - component: {fileID: 1788134430}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -196,6 +199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d6ceb4f51eff4418a9f9717b8ccada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoverTimeAfterKnockback: 1
+  lethalLayers:
+  - Enemy
+  - LethalObjects
 --- !u!50 &4625069240771233869
 Rigidbody2D:
   serializedVersion: 4
@@ -304,7 +311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIPrefab: {fileID: 2352672034097871711, guid: 666cd2b5e54ea4e4bbebe3152630afc7, type: 3}
   canvas: {fileID: 0}
-  sprite: {fileID: 21300000, guid: f34e83b5f0fe1432cb87276148dc6341, type: 3}
 --- !u!114 &1210927302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +321,49 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0e3a060415231b4dbdff0bd9374286f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1788134418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4625069240771233865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f8d686183dbd44982ad3f33e53ad03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runningSound: PlayerRunning
+  crounchRunningSound: PlayerCrounchRunning
+  groundedSound: Grounded
+  jumpSound: PlayerJump
+--- !u!114 &1788134428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4625069240771233865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced174691c4059849a26f39c674c8e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteBlinkingTimer: 0
+  spriteBlinkingMiniDuration: 0.1
+  isBlinking: 0
+--- !u!114 &1788134430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4625069240771233865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003387bf6f24d3546a03e5cde61210b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6899136467466761487
