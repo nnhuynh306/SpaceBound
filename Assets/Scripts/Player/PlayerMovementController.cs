@@ -41,7 +41,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool isKnockingBack = false;
 
-    private float knockbackForce = 5;
+    private float knockbackForce = 10;
 
     private float knockBackTimer = 0f;
 
@@ -68,6 +68,14 @@ public class PlayerMovementController : MonoBehaviour
 
     private PlayerController playerController;
 
+    private bool higherJumpActivated = false;
+
+    private float higherJumpMultiplier = 1;
+    private GameObject higherJumpEffect;
+
+    private float higherSpeedMultiplier = 1f;
+    private GameObject higherSpeedEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,9 +83,9 @@ public class PlayerMovementController : MonoBehaviour
 
         animationController = GetComponent<PlayerAnimationController>();
 
-        headCollider = GetComponent<BoxCollider2D>();
+        headCollider = transform.Find("HeadCollider").GetComponent<BoxCollider2D>();
 
-        bodyCollider = GetComponent<CircleCollider2D>();
+        bodyCollider = transform.Find("BodyCollider").GetComponent<CircleCollider2D>();
 
         spriteBlinkingController = GetComponent<SpriteBlinkingController>();
 
@@ -130,7 +138,7 @@ public class PlayerMovementController : MonoBehaviour
         userXAxisInput = playerInput.Player.Movement.ReadValue<float>();
 
         Vector2 position = transform.position;
-        position.x += userXAxisInput * (isCrouching? crounchingRunSpeed: runSpeed) * deltaTime;
+        position.x += userXAxisInput * (isCrouching? crounchingRunSpeed: runSpeed) * deltaTime * higherSpeedMultiplier;
         
         moveAnimationCheck();
         moveAudioCheck();
@@ -180,7 +188,8 @@ public class PlayerMovementController : MonoBehaviour
     float calculateForce(double startTime, double stopTime) {
         float totalChargeTime = (float)((stopTime - startTime) / jumpChargeTimeDenominator) + baseJumpChargeTime;
         float time = Mathf.Min(jumpChargeTimeMax, totalChargeTime);
-        return time * (isCrouching? crounchingBaseJumpForce: baseJumpForce);
+        return time * (isCrouching? crounchingBaseJumpForce: baseJumpForce)
+            * (higherJumpActivated? higherJumpMultiplier: 1);
     }
 
     float calculateBaseForce() {
@@ -219,24 +228,21 @@ public class PlayerMovementController : MonoBehaviour
             return;
         }
         if (!isJumping) {
+            rigidBody.velocity = Vector2.zero;
             rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             
             isJumping = true;
             animationController.jumping();
             playerAudioController.jump();
+            
+            if (higherJumpActivated) {
+                deactivateHigherJump();
+            }
         }
     }
 
     public void jumpWithoutCharge() {
-        if (MovementDisabled) {
-            return;
-        }
-        if (!isJumping) {
-            rigidBody.AddForce(Vector2.up * calculateBaseForce(), ForceMode2D.Impulse);
-            
-            isJumping = true;
-            animationController.jumping();
-        }
+       jump(calculateBaseForce());
     } 
 
     public void crouch() {
@@ -273,15 +279,20 @@ public class PlayerMovementController : MonoBehaviour
 
         playerController.invincible();
 
-        Vector2 difference = (transform.position - other.transform.position).normalized;
-        Vector2 force = difference * knockbackForce;
-        rigidBody.AddForce(force, ForceMode2D.Impulse);
+        applyKnockbackForce(other);
 
         isKnockingBack = true;
 
         disableMovement();
         animationController.hurt();
         disableLethalInteraction();
+    }
+
+    public void applyKnockbackForce(GameObject other) {
+        Vector2 difference = (transform.position - other.transform.position).normalized;
+        Vector2 force = difference * knockbackForce;
+        rigidBody.velocity = Vector2.zero;
+        rigidBody.AddForce(force, ForceMode2D.Impulse);
     }
 
     public void leaveGround() {
@@ -331,5 +342,31 @@ public class PlayerMovementController : MonoBehaviour
             Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer(layerName), false);
         }
         spriteBlinkingController.stopBlinking();
+    }
+
+    //----MOVEMENT SKILLS---------------------------------------------------------------------------------//
+    public void higherJump(float multiplier) {
+        higherJumpActivated = true;
+        higherJumpMultiplier = multiplier;
+        higherJumpEffect = Instantiate(Resources.Load<GameObject>("Effects/HigherJumpEffect"), new Vector2(-0.07f, -0.9f), Quaternion.identity);
+        higherJumpEffect.transform.SetParent(this.gameObject.transform, false);
+    }
+
+    private void deactivateHigherJump() {
+        higherJumpActivated = false;
+        Destroy(higherJumpEffect);
+    }
+
+    public void higherSpeed(float multiplier, float time) {
+        higherSpeedMultiplier = multiplier;
+        higherSpeedEffect = Instantiate(Resources.Load<GameObject>("Effects/HigherSpeedEffect"), new Vector2(-0.07f, -0.4f), Quaternion.identity);
+        higherSpeedEffect.transform.SetParent(this.gameObject.transform, false);
+
+        Invoke("deactivateHigherSpeed", time);
+    }
+
+    public void deactivateHigherSpeed() {
+        higherSpeedMultiplier = 1f;
+        Destroy(higherSpeedEffect);
     }
 }

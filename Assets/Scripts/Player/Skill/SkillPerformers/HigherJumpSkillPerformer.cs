@@ -6,6 +6,6 @@ public class HigherJumpSkillPerformer : SkillPerformer
 {
  
     public void perform(GameObject player) {
-
+        player.GetComponent<PlayerMovementController>().higherJump(1.2f);
     }
 }

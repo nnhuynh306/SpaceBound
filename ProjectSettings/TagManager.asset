@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Stomp Detector
   - LethalObject
+  - Player's Head Collider
+  - Player's Body Collider
   layers:
   - Default
   - TransparentFX

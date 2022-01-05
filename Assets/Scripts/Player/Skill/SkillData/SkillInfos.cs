@@ -33,8 +33,15 @@ public class SkillInfos
         shield.cooldownTime = 7;
         shield.skillPerformer = new ShieldSkillPerformer();
 
+        SkillInfo higherSpeed = new SkillInfo();
+        higherSpeed.spritePath = "Sprite/Skills/HigherSpeed";
+        higherSpeed.name = "higherSpeed";
+        higherSpeed.cooldownTime = 7;
+        higherSpeed.skillPerformer = new HigherSpeedSkillPerformer();
+
         skillInfos.Add(higherJump);
         skillInfos.Add(shield);
+        skillInfos.Add(higherSpeed);
     }
 
     public SkillInfo getBy(string name) {
