@@ -6,30 +6,39 @@ public class AudioManager : Singleton<AudioManager>
 {
     public Sound[] sounds;
     [SerializeField] Slider slider;
-    public Toggle mute;
+    [SerializeField] Toggle mute;
 
     private void Awake() {
         foreach(Sound sound in sounds) {
             sound.source = gameObject.AddComponent<AudioSource>();
         }
-        slider.onValueChanged.AddListener(HandlerSliderValueChanged);
-        mute.onValueChanged.AddListener(HandlerMute);
+        float volume = PlayerPrefs.GetFloat("volume");
+        bool isMute = PlayerPrefs.GetInt("ismute") == 0 ? false : true;
+        HandlerMute(isMute);
+        HandlerSliderValueChanged(volume);
+        if (slider != null)
+        {
+            slider.value = volume;
+            mute.isOn = isMute;
+            slider.onValueChanged.AddListener(HandlerSliderValueChanged);
+            mute.onValueChanged.AddListener(HandlerMute);
+        }
     }
 
     private void HandlerMute(bool isMute)
     {
-        foreach (Sound sound in sounds)
+        if (isMute)
         {
-            sound.source.mute = isMute;
+            AudioListener.volume = 0;
         }
+        else AudioListener.volume = PlayerPrefs.GetFloat("volume");
+        PlayerPrefs.SetInt("isMute", isMute ? 1 : 0);
     }
 
     private void HandlerSliderValueChanged(float value)
     {
-        foreach (Sound sound in sounds) {
-            sound.source.volume = value;
-        }
-        
+        AudioListener.volume = value;
+        PlayerPrefs.SetFloat("volume", value);
     }
 
     private Sound findSound(String name) {
