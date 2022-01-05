@@ -45,6 +45,6 @@ public class SkillInfos
     }
 
     public SkillInfo getBy(string name) {
-        return Array.Find<SkillInfo>(skillInfos.ToArray(), x => x.name.Equals(name));
+        return Array.Find<SkillInfo>(skillInfos.ToArray(), x => x.name.ToLower().Equals(name.ToLower()));
     }
 }

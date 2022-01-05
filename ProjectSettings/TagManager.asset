@@ -11,6 +11,7 @@ TagManager:
   - LethalObject
   - Player's Head Collider
   - Player's Body Collider
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Ground
   - Ignore Physic
   - LethalObjects
-  - 
+  - Portal
   - 
   - 
   - 
