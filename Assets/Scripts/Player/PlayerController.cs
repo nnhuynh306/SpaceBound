@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     
     private GameObject shieldEffect;
     private Coroutine breakShieldCoroutine;
+
+    private bool isFinishing = false;
+    private Transform playerTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         bodyAndHeadColliderCollisionTimeCheck();
+
+        checkFinishingAnimation();
+    }
+
+    void checkFinishingAnimation() {
+        if (isFinishing) {
+            playerTransform.Rotate(new Vector3(0, 0, -1f));
+            playerTransform.localScale = playerTransform.localScale * 0.994f;
+        }
     }
 
     public void killEnemy(GameObject enemy) {
@@ -191,5 +203,18 @@ public class PlayerController : MonoBehaviour
     public IEnumerator breakShieldCoroutineMethod(float time) {
         yield return new WaitForSeconds(time);
         breakShield(null);
+    }
+
+    public void finish() {
+        playerMovementController.disableMovement();
+        playerTransform = GetComponent<Transform>();
+        Invoke("destroySelf", 1);
+        isFinishing = true;
+        
+        GetComponent<PlayerSkillController>().disable();
+    }
+    
+    private void destroySelf() {
+        Destroy(gameObject);
     }
 }

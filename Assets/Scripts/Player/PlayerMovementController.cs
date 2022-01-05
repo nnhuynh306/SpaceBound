@@ -187,7 +187,7 @@ public class PlayerMovementController : MonoBehaviour
 
     void JumpExit(InputAction.CallbackContext context) {
         jump(calculateForce(jumpStartTime, context.time));
-        
+
         jumpChargeEffect.SetActive(false);
     }
 
@@ -328,7 +328,7 @@ public class PlayerMovementController : MonoBehaviour
 
     //---- OTHER ---------------------------------------------------------------------------- //
 
-    private void disableMovement() {
+    public void disableMovement() {
         MovementDisabled = true;
         playerInput.Player.Disable();
     }
@@ -350,6 +350,11 @@ public class PlayerMovementController : MonoBehaviour
             Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer(layerName), false);
         }
         spriteBlinkingController.stopBlinking();
+    }
+
+    public void stickToPosition(Vector2 pos) {
+        rigidBody.gravityScale = 0;
+        gameObject.transform.position = pos;
     }
 
     //----MOVEMENT SKILLS---------------------------------------------------------------------------------//

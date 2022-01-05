@@ -8,6 +8,8 @@ public class Portal : MonoBehaviour
 
     private float spinSpeed = 1;
 
+    private bool finished = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +23,12 @@ public class Portal : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        spinSpeed = 5;
-
-        AudioManager.Instance.playOneAtATime("Portal");
+        if (!finished) {
+            spinSpeed = 5;
+            finished = true;
+            GameManager.Instance.finishGame();
+            AudioManager.Instance.playOneAtATime("Portal");
+            other.gameObject.GetComponentInParent<PlayerMovementController>().stickToPosition(gameObject.transform.position);
+        }
     }
 }
