@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-
 //Reference: https://www.youtube.com/watch?v=6OT43pvUyfY
 
 [System.Serializable]
-public class Sound 
+public class Sound
 {
     public string name;
 

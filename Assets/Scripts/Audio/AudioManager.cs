@@ -1,18 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using UnityEngine.UI;
 //Reference: https://www.youtube.com/watch?v=6OT43pvUyfY
 public class AudioManager : Singleton<AudioManager>
 {
     public Sound[] sounds;
-
+    [SerializeField] Slider slider;
+    public Toggle mute;
 
     private void Awake() {
         foreach(Sound sound in sounds) {
             sound.source = gameObject.AddComponent<AudioSource>();
         }
+        slider.onValueChanged.AddListener(HandlerSliderValueChanged);
+        mute.onValueChanged.AddListener(HandlerMute);
+    }
+
+    private void HandlerMute(bool isMute)
+    {
+        foreach (Sound sound in sounds)
+        {
+            sound.source.mute = isMute;
+        }
+    }
+
+    private void HandlerSliderValueChanged(float value)
+    {
+        foreach (Sound sound in sounds) {
+            sound.source.volume = value;
+        }
+        
     }
 
     private Sound findSound(String name) {

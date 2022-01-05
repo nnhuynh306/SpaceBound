@@ -49,6 +49,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
+    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 1
   - name: PlayerRunning
@@ -56,6 +57,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
+    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 1
   - name: PlayerCrounchRunning
@@ -63,6 +65,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
+    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 1
   - name: Grounded
@@ -70,6 +73,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
+    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 0
   - name: PlayerJump
@@ -77,6 +81,7 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1.5
     output: {fileID: 0}
+    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 0
   - name: EnemyDeath
@@ -84,6 +89,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
+    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 0
   - name: HealthCollected
@@ -91,6 +97,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
+    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 0
   - name: GemCollected
@@ -98,5 +105,16 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
+    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 0
+  - name: Portal
+    clip: {fileID: 8300000, guid: 015e290524efa5642a448159c9970f51, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    slider: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  slider: {fileID: 0}
+  mute: {fileID: 0}
