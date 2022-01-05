@@ -76,6 +76,8 @@ public class PlayerMovementController : MonoBehaviour
     private float higherSpeedMultiplier = 1f;
     private GameObject higherSpeedEffect;
 
+    public ParticleSystem jumpChargeEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -179,10 +181,12 @@ public class PlayerMovementController : MonoBehaviour
 
     void JumpEnter(InputAction.CallbackContext context) {
         this.jumpStartTime = context.time;
+        this.jumpChargeEffect.Play();
     }
 
     void JumpExit(InputAction.CallbackContext context) {
         jump(calculateForce(jumpStartTime, context.time));
+        this.jumpChargeEffect.Stop();
     }
 
     float calculateForce(double startTime, double stopTime) {
