@@ -8,7 +8,7 @@ public class Skill: MonoBehaviour
 
     public SkillUI UI;
     
-    private float cooldownTime = 5;
+    private float cooldownTime = 0;
     public float CooldownTime {
         set {
             if (value >= 0) {
@@ -46,7 +46,7 @@ public class Skill: MonoBehaviour
 
     public void perform() {
         if (!isCoolingDown) {
-            // performer.perform();
+            performer.perform(gameObject);
             timer = cooldownTime;
             isCoolingDown = true;
             UI.changeCooldownUI(timer, cooldownTime);
@@ -56,5 +56,13 @@ public class Skill: MonoBehaviour
 
     public void updateUI() {
         UI.changeCooldownUI(timer, cooldownTime);
+    }
+
+    public void parse(SkillInfo skillInfo) {
+        if (skillInfo != null) {
+            performer = skillInfo.skillPerformer;
+            CooldownTime = skillInfo.cooldownTime;
+            UI.changeSprite(skillInfo.spritePath);
+        }
     }
 }

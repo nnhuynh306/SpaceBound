@@ -11,22 +11,20 @@ public class PlayerSkillController : MonoBehaviour
 
     public GameObject canvas;
 
-    public Sprite sprite;
-
     private PlayerInput playerInput;
 
     // Start is called before the first frame update
     void Start()
     {   
-        skills.Add(initSkill("test", 0));
-        skills.Add(initSkill("test", 1));
-
         playerInput = new PlayerInput();
         playerInput.Player.Skill1.Enable();
         playerInput.Player.Skill2.Enable();
 
         playerInput.Player.Skill1.performed += Skill1Performed;
         playerInput.Player.Skill2.performed += Skill2Performed;
+
+        skills.Add(initSkill("higherJump", 0));
+        skills.Add(initSkill("higherSpeed", 1));
        
     }
 
@@ -46,10 +44,32 @@ public class PlayerSkillController : MonoBehaviour
 
     private Skill initSkill(string name, int index) {
         SkillUI UI = gameObject.AddComponent<SkillUI>();
-        UI.init(canvas, UIPrefab, sprite, index);
+        UI.init(canvas, UIPrefab, index);
         Skill skill = gameObject.AddComponent<Skill>();
         skill.UI = UI;
-
+        setSkillButtonText(UI, index);
+        skill.parse(getSkillInfoBy(name));
         return skill;
     }
+
+    private void setSkillButtonText(SkillUI skillUI, int index) {
+        switch (index) {
+            case 0: {
+                skillUI.setButtonText(playerInput.Player.Skill1.GetBindingDisplayString());
+                break;
+            }
+            case 1:
+                skillUI.setButtonText(playerInput.Player.Skill2.GetBindingDisplayString());
+                break;
+            default: {
+                skillUI.setButtonText(playerInput.Player.Skill1.GetBindingDisplayString());
+                break;
+            }
+        }
+    }
+
+    private SkillInfo getSkillInfoBy(string name) {
+        return SkillInfos.Instance.getBy(name);
+    }
+
 }

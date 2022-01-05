@@ -20,7 +20,7 @@ public class HealthCollectableController : CollectableController
 
     public override void applyOnPlayer(GameObject player)
     {
-        Debug.Log("apply");
+        player.GetComponent<PlayerHealthController>().increaseHealth(health);
     }
 
 }
