@@ -16,6 +16,8 @@ public class PlayerSkillController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
+        canvas = GameObject.FindGameObjectWithTag("In-game UI");
+        
         playerInput = new PlayerInput();
         playerInput.Player.Skill1.Enable();
         playerInput.Player.Skill2.Enable();

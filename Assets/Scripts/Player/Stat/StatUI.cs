@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class StatUI : Singleton<StatUI>
 {
@@ -20,14 +22,30 @@ public class StatUI : Singleton<StatUI>
     private Vector2 firstShieldIconPosition = new Vector2(68, -52);
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {   
+        setName();
+        setAvatar();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void setName() {
+        transform.Find("Name").GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetString(PlayerPrefsKeys.PLAYER_NAME, "");
+    }
+
+    private void setAvatar() {
+        transform.Find("CharacterImage").GetComponent<Image>().sprite 
+            = getAvatar(PlayerPrefs.GetString(PlayerPrefsKeys.CHARACTER_NAME, "fox"));
+
+    }
+
+    private Sprite getAvatar(string name) {
+        string skinPath = "Sprite/Skins/";
+        return Resources.Load<Sprite>(skinPath + name + " image");
     }
 
     public void updateHealthUI(int health) {

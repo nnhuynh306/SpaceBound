@@ -120,6 +120,40 @@ public class GameManager : Singleton<GameManager>
 
     }
 
+    public int getPlayerCoin() {
+        int currentCoint = PlayerPrefs.GetInt(PlayerPrefsKeys.PLAYER_COIN, -1);
+
+        if (currentCoint == -1) {
+            PlayerPrefs.SetInt(PlayerPrefsKeys.PLAYER_COIN, 0);
+            return 0;
+        }
+
+        return currentCoint;
+    }
+
+    private void setPlayerCoint(int amount) {
+        if (amount < 0) {
+            return;
+        }
+        PlayerPrefs.SetInt(PlayerPrefsKeys.PLAYER_COIN, amount);
+    }
+
+    public bool spendCoin(int amount) {
+        if (amount < 0) {
+            return false;
+        }
+
+        int currentCoin = getPlayerCoin();
+
+        if (currentCoin < amount) {
+            return false;
+        } else {
+            setPlayerCoint(currentCoin - amount);
+            return true;
+        }
+
+    }
+
     enum State {
         IS_FINISHING,
         GAME_OVER,
