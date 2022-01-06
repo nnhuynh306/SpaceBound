@@ -19,7 +19,7 @@ public class MenuController : MonoBehaviour
     }
 
     public void StartGame() {
-        SceneManager.LoadScene("Level_1");
+        SceneManager.LoadScene("ChooseLevelMenu");
     }
 
     public void SetName() {
