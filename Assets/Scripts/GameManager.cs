@@ -24,7 +24,13 @@ public class GameManager : Singleton<GameManager>
             playerInput.Player.Pause.Enable();
 
             playerInput.Player.Pause.performed += OnPausePerformed;
+
+            AudioManager.Instance.playOneAtATime("InGameTheme");
+
             closePauseMenu();
+        } else {
+            
+            AudioManager.Instance.playOneAtATime("MenuTheme");
         }
     }
 
@@ -77,20 +83,41 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void finishGame() {
-       if (state != State.IS_FINISHING) {
+       if (state == State.PLAYING) {
             state = State.IS_FINISHING;
             Invoke("showVictoryScreen", 1);
             FindObjectOfType<PlayerController>().finish();
        }
     }
 
+    public void defeated() {
+        if (state != State.GAME_OVER) {
+            state = State.GAME_OVER;
+            Invoke("showDefeatScreen", 1);
+            FindObjectOfType<PlayerController>().killed();
+        }
+    }
+
     private void showVictoryScreen() {
-        GameObject victoryUI = Instantiate(Resources.Load<GameObject>("Prefabs/VictoryUI"), Vector2.zero, Quaternion.identity);
+        GameObject victoryUI = Instantiate(Resources.Load<GameObject>("Prefabs/Menu/VictoryUI"), Vector2.zero, Quaternion.identity);
         victoryUI.transform.SetParent(GameObject.FindGameObjectWithTag("In-game UI").transform, false);
+
+        AudioManager.Instance.playOneAtATime("Victory");
+    }
+
+    private void showDefeatScreen() {
+        GameObject victoryUI = Instantiate(Resources.Load<GameObject>("Prefabs/Menu/GameOverMenu"), Vector2.zero, Quaternion.identity);
+        victoryUI.transform.SetParent(GameObject.FindGameObjectWithTag("In-game UI").transform, false);
+
+        AudioManager.Instance.playOneAtATime("Defeat");
     }
 
     public void replay() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void changeTheme() {
+
     }
 
     enum State {

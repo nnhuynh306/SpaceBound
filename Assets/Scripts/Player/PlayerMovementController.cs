@@ -354,6 +354,7 @@ public class PlayerMovementController : MonoBehaviour
 
     public void stickToPosition(Vector2 pos) {
         rigidBody.gravityScale = 0;
+        rigidBody.velocity = Vector2.zero;
         gameObject.transform.position = pos;
     }
 

@@ -44,13 +44,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Theme
+  - name: InGameTheme
     clip: {fileID: 8300000, guid: 7fc4a159011dc44048889e9a303227e6, type: 3}
     volume: 1
     pitch: 1
     output: {fileID: 0}
     source: {fileID: 0}
     loop: 1
+  - name: MenuTheme
+    clip: {fileID: 8300000, guid: 430702b74da8a44d0bb807fa59a6be0a, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
   - name: PlayerRunning
     clip: {fileID: 8300000, guid: d88e6bd959ff29740b3eed6ab266ea36, type: 3}
     volume: 1
@@ -95,6 +109,27 @@ MonoBehaviour:
     loop: 0
   - name: GemCollected
     clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: Portal
+    clip: {fileID: 8300000, guid: 015e290524efa5642a448159c9970f51, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: Victory
+    clip: {fileID: 8300000, guid: a50b656c6f2fa3e42994cd0909d91faf, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: Defeat
+    clip: {fileID: 8300000, guid: 47a9ebc0dd5350240bbbdd06beaad05d, type: 3}
     volume: 1
     pitch: 1
     output: {fileID: 0}

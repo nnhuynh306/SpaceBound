@@ -166,10 +166,6 @@ public class PlayerController : MonoBehaviour
         playerHealthController.damaged(1);
     }
 
-    private void killed() {
-        Debug.Log("Killed");
-    }
-    
     public void invincible() {
         isInvincible = true;
     }
@@ -206,11 +202,25 @@ public class PlayerController : MonoBehaviour
     }
 
     public void finish() {
-        playerMovementController.disableMovement();
         playerTransform = GetComponent<Transform>();
         Invoke("destroySelf", 1);
         isFinishing = true;
         
+        disableInteractions();
+    }
+
+    public void killed() {
+        destroySelf();
+
+        AudioManager.Instance.playOneAtATime("PlayerDeath");
+
+        GameObject deathEffect = Instantiate(Resources.Load<GameObject>("Effects/DeathEffect"), gameObject.transform.position, Quaternion.identity);
+
+        disableInteractions();
+    }
+
+    public void disableInteractions() {
+        playerMovementController.disableMovement();
         GetComponent<PlayerSkillController>().disable();
     }
     

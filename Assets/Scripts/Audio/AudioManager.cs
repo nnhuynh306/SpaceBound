@@ -39,10 +39,6 @@ public class AudioManager : Singleton<AudioManager>
         sound.source.Play();
     }
 
-    public void Start() {
-        play("Theme");
-    }
-
     public void playOneAtATime(string name) {
         Sound sound = findSound(name);
 
