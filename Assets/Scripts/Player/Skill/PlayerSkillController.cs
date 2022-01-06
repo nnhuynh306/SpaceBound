@@ -72,4 +72,14 @@ public class PlayerSkillController : MonoBehaviour
         return SkillInfos.Instance.getBy(name);
     }
 
+    public void disable() {
+        playerInput.Player.Skill1.Disable();
+        playerInput.Player.Skill2.Disable();
+    }
+
+    public void enable() {
+        playerInput.Player.Skill1.Enable();
+        playerInput.Player.Skill2.Enable();
+    }
+
 }

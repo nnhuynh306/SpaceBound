@@ -33,18 +33,10 @@ public class EnemyController : MonoBehaviour
     }
 
     public void killed() {
-        Debug.Log("Kill enemy");
         isKilled = true;
         animator.SetTrigger("Death");
         disable();
     }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Player")) {
-            other.gameObject.GetComponent<PlayerController>().hitEnemy(gameObject);
-        }
-    }
-
 
     private void disable() {
         AudioManager.Instance.play(deathSound);

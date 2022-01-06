@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Theme
+  - name: InGameTheme
     clip: {fileID: 8300000, guid: 7fc4a159011dc44048889e9a303227e6, type: 3}
     volume: 1
     pitch: 1
@@ -52,6 +52,20 @@ MonoBehaviour:
     slider: {fileID: 0}
     source: {fileID: 0}
     loop: 1
+  - name: MenuTheme
+    clip: {fileID: 8300000, guid: 430702b74da8a44d0bb807fa59a6be0a, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
   - name: PlayerRunning
     clip: {fileID: 8300000, guid: d88e6bd959ff29740b3eed6ab266ea36, type: 3}
     volume: 1

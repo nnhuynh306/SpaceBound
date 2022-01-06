@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 19900004}
   - component: {fileID: 11400004}
   m_Layer: 0
-  m_Name: CFX2_EnemyDeathSkull
+  m_Name: DeathEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

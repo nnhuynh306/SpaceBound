@@ -582,13 +582,29 @@ PrefabInstance:
       propertyPath: InitialModule.startSize.scalar
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 1009001191711631164, guid: 3563d789fdc3e424c8360dd831869a09, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009443359434999760, guid: 3563d789fdc3e424c8360dd831869a09, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1009485968150403442, guid: 3563d789fdc3e424c8360dd831869a09, type: 3}
       propertyPath: m_Name
       value: JumpChargeEffect
       objectReference: {fileID: 0}
     - target: {fileID: 1009485968150403442, guid: 3563d789fdc3e424c8360dd831869a09, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009485968150403442, guid: 3563d789fdc3e424c8360dd831869a09, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009680147786009310, guid: 3563d789fdc3e424c8360dd831869a09, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1011059592278010114, guid: 3563d789fdc3e424c8360dd831869a09, type: 3}
       propertyPath: m_RootOrder

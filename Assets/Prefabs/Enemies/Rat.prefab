@@ -155,7 +155,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: baa0c643131554ff99574059ec7da1cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -200,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 8372052464178870810}
   deathPrefab: {fileID: 3037339946393137113, guid: f5757b35c4fad534e85ad114996497e2, type: 3}
+  deathSound: EnemyDeath
 --- !u!61 &8372052464178870814
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     
     private GameObject shieldEffect;
     private Coroutine breakShieldCoroutine;
+
+    private bool isFinishing = false;
+    private Transform playerTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         bodyAndHeadColliderCollisionTimeCheck();
+
+        checkFinishingAnimation();
+    }
+
+    void checkFinishingAnimation() {
+        if (isFinishing) {
+            playerTransform.Rotate(new Vector3(0, 0, -1f));
+            playerTransform.localScale = playerTransform.localScale * 0.994f;
+        }
     }
 
     public void killEnemy(GameObject enemy) {
@@ -154,10 +166,6 @@ public class PlayerController : MonoBehaviour
         playerHealthController.damaged(1);
     }
 
-    private void killed() {
-        Debug.Log("Killed");
-    }
-    
     public void invincible() {
         isInvincible = true;
     }
@@ -191,5 +199,32 @@ public class PlayerController : MonoBehaviour
     public IEnumerator breakShieldCoroutineMethod(float time) {
         yield return new WaitForSeconds(time);
         breakShield(null);
+    }
+
+    public void finish() {
+        playerTransform = GetComponent<Transform>();
+        Invoke("destroySelf", 1);
+        isFinishing = true;
+        
+        disableInteractions();
+    }
+
+    public void killed() {
+        destroySelf();
+
+        AudioManager.Instance.playOneAtATime("PlayerDeath");
+
+        GameObject deathEffect = Instantiate(Resources.Load<GameObject>("Effects/DeathEffect"), gameObject.transform.position, Quaternion.identity);
+
+        disableInteractions();
+    }
+
+    public void disableInteractions() {
+        playerMovementController.disableMovement();
+        GetComponent<PlayerSkillController>().disable();
+    }
+    
+    private void destroySelf() {
+        Destroy(gameObject);
     }
 }
