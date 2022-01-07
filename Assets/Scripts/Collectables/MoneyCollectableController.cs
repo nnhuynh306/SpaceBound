@@ -19,6 +19,6 @@ public class MoneyCollectableController : CollectableController
 
     public override void applyOnPlayer(GameObject player)
     {
-        
+        player.GetComponent<PlayerController>().collectMoney(amount);
     }
 }

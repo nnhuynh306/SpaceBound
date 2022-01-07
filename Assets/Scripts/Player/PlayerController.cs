@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isFinishing = false;
     private Transform playerTransform;
+
+    private int moneyCollected = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +65,9 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Ground")) {
             playerMovementController.OnTriggerEnterGround();
+        }
+        if (other.gameObject.CompareTag("Collectable")) {
+            other.gameObject.GetComponent<CollectableController>().collectedBy(this.gameObject);
         }
     }
 
@@ -213,6 +218,8 @@ public class PlayerController : MonoBehaviour
         isFinishing = true;
         
         disableInteractions();
+
+        PlayerPrefs.SetInt(PlayerPrefsKeys.CURRENT_LEVEL_MONEY, moneyCollected);
     }
 
     public void killed() {
@@ -234,5 +241,13 @@ public class PlayerController : MonoBehaviour
     
     private void destroySelf() {
         Destroy(gameObject);
+    }
+
+    public void collectMoney(int amount) {
+        if (amount < 0) {
+            return;
+        }
+
+        moneyCollected += amount;
     }
 }

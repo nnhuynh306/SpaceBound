@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7440156850690444921}
   - component: {fileID: 7440156850690444902}
   - component: {fileID: 7440156850690444922}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Gem
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,5 +144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7440156850690444921}
   animationTriggerName: Interacted
-  collectedSound: 
+  collectedSound: GemCollected
   collectedEffectPrefab: {fileID: 2023331950670526085, guid: cb520db11fa9b9a44b195fad0954aceb, type: 3}
+  collected: 0

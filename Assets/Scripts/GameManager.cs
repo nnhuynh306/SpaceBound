@@ -184,6 +184,14 @@ public class GameManager : Singleton<GameManager>
 
     }
 
+    public void addCoin(int amount) {
+        if (amount <= 0) {
+            return;
+        }
+
+        setPlayerCoint(amount + getPlayerCoin());
+    }
+
     public void openAvatarShop() {
         if (chooseAvatarMenu == null) {
             chooseAvatarMenu = createMenu("Prefabs/Menu/ChooseAvatarMenu");
@@ -221,6 +229,6 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void goToNextLevel() {
-        
+
     }
 }

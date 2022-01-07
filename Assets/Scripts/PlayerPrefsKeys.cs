@@ -12,4 +12,6 @@ public class PlayerPrefsKeys
     public static string PLAYER_COIN = "player_coin";
 
     public static string CURRENT_LEVEL = "current_level";
+
+    public static string CURRENT_LEVEL_MONEY = "current_level_money";
 }

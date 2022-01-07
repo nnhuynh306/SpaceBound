@@ -9,6 +9,7 @@ public class VictoryUI : Singleton<VictoryUI>
     void Start()
     {
         setCoin();
+        GameManager.Instance.addCoin(getCoinCollected());
     }
 
     // Update is called once per frame
@@ -18,11 +19,15 @@ public class VictoryUI : Singleton<VictoryUI>
     }
 
     void setCoin() {
-        gameObject.transform.Find("Coin").Find("CoinText").GetComponent<TextMeshProUGUI>().text = getCoinCollected();
+        gameObject.transform.Find("Coin").Find("CoinText").GetComponent<TextMeshProUGUI>().text = getCoinCollectedAsText();
     }
 
-    string getCoinCollected() {
-        return "2";
+    string getCoinCollectedAsText() {
+        return getCoinCollected().ToString();
+    }
+
+    int getCoinCollected() {
+        return PlayerPrefs.GetInt(PlayerPrefsKeys.CURRENT_LEVEL_MONEY, 0);
     }
     public void replay() {
         GameManager.Instance.replay();
