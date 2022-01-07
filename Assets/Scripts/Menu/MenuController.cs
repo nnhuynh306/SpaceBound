@@ -15,7 +15,7 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void StartGame() {
@@ -24,6 +24,10 @@ public class MenuController : MonoBehaviour
 
     public void SetName() {
         SceneManager.LoadScene("ChooseName");
+    }
+
+    public void Shop() { 
+        SceneManager.LoadScene("ShopUI");
     }
 
     public void LoadGame() { }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Player's Detector
+  - NPC
   layers:
   - Default
   - TransparentFX

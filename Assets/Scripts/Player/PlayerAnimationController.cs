@@ -18,14 +18,14 @@ public class PlayerAnimationController : MonoBehaviour
         
     }
 
-    public void jumping() {
+    public void jumping()
+    {
         animator.SetBool("Jumping", true);
-                Debug.Log("jump");
     }
 
-    public void grounded() {
+    public void grounded()
+    {
         animator.SetBool("Jumping", false);
-        Debug.Log("grounded");
     }
 
     public void setJumping(bool isJumping) {

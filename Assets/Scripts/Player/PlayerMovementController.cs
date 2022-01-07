@@ -157,7 +157,6 @@ public class PlayerMovementController : MonoBehaviour
             isCrouching = true;
             
             headCollider.isTrigger = true;
-            Debug.Log("crouch");
             animationController.crouch();
         }
     }
@@ -167,7 +166,6 @@ public class PlayerMovementController : MonoBehaviour
             isCrouching = false;
 
             headCollider.isTrigger = false;
-            Debug.Log("stand up");
             animationController.standUp();
         }
     }
