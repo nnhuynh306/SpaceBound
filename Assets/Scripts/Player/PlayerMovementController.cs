@@ -294,6 +294,8 @@ public class PlayerMovementController : MonoBehaviour
         disableMovement();
         animationController.hurt();
         disableLethalInteraction();
+
+        AudioManager.Instance.playOneAtATime("PlayerHurt");
     }
 
     public void applyKnockbackForce(GameObject other) {
@@ -364,11 +366,15 @@ public class PlayerMovementController : MonoBehaviour
         higherJumpMultiplier = multiplier;
         higherJumpEffect = Instantiate(Resources.Load<GameObject>("Effects/HigherJumpEffect"), new Vector2(-0.07f, -0.9f), Quaternion.identity);
         higherJumpEffect.transform.SetParent(this.gameObject.transform, false);
+
+        AudioManager.Instance.playOneAtATime("HigherJump");
     }
 
     private void deactivateHigherJump() {
         higherJumpActivated = false;
         Destroy(higherJumpEffect);
+
+        AudioManager.Instance.stop("HigherJump");
     }
 
     public void higherSpeed(float multiplier, float time) {
@@ -376,11 +382,21 @@ public class PlayerMovementController : MonoBehaviour
         higherSpeedEffect = Instantiate(Resources.Load<GameObject>("Effects/HigherSpeedEffect"), new Vector2(-0.07f, -0.4f), Quaternion.identity);
         higherSpeedEffect.transform.SetParent(this.gameObject.transform, false);
 
+        AudioManager.Instance.playOneAtATime("StimStart");
+        Invoke("playStimLoop", 0.1f);
+
         Invoke("deactivateHigherSpeed", time);
+    }
+
+    private void playStimLoop() {
+        AudioManager.Instance.playOneAtATime("StimLoop");
     }
 
     public void deactivateHigherSpeed() {
         higherSpeedMultiplier = 1f;
+
+        AudioManager.Instance.stop("StimLoop");
+        AudioManager.Instance.playOneAtATime("StimStop");
         Destroy(higherSpeedEffect);
     }
 }

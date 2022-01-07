@@ -181,12 +181,16 @@ public class PlayerController : MonoBehaviour
         shieldActivated = true;
         shieldEffect = Instantiate(Resources.Load<GameObject>("Effects/ShieldEffect"), new Vector2(-0.07f, -0.3f), Quaternion.identity);
         shieldEffect.transform.SetParent(this.gameObject.transform, false);
+        
+        AudioManager.Instance.playOneAtATime("ShieldStart");
 
         breakShieldCoroutine = StartCoroutine("breakShieldCoroutineMethod", time);
     }
 
     public void breakShield(GameObject other) {
         shieldActivated = false;
+
+        AudioManager.Instance.playOneAtATime("ShieldStop");
 
         Destroy(shieldEffect);
     
@@ -213,6 +217,8 @@ public class PlayerController : MonoBehaviour
         destroySelf();
 
         AudioManager.Instance.playOneAtATime("PlayerDeath");
+
+        AudioManager.Instance.stop("PlayerRunning");
 
         GameObject deathEffect = Instantiate(Resources.Load<GameObject>("Effects/DeathEffect"), gameObject.transform.position, Quaternion.identity);
 
