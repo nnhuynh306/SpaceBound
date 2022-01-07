@@ -84,4 +84,8 @@ public class PlayerSkillController : MonoBehaviour
         playerInput.Player.Skill2.Enable();
     }
 
+    private void OnDestroy() {
+        playerInput.Disable();
+    }
+
 }

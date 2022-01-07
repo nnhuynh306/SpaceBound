@@ -6,6 +6,6 @@ public class VictoryPortal : Portal
 {
     protected override void portalEnter()
     {
-        GameManager.Instance.finishGame();
+        GameManager.Instance.victory();
     }
 }

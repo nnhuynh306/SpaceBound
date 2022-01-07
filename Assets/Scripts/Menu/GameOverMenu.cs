@@ -22,5 +22,10 @@ public class GameOverMenu : MonoBehaviour
 
     public void quit() {
         //to main menu
+        GameManager.Instance.goToChooseLevelScene();
+    }
+
+    public void backToMerchant() {
+        GameManager.Instance.goToMerchantLevel();
     }
 }

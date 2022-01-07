@@ -18,7 +18,7 @@ public class VictoryUI : Singleton<VictoryUI>
     }
 
     void setCoin() {
-        gameObject.transform.Find("CoinText").GetComponent<TextMeshProUGUI>().text = getCoinCollected();
+        gameObject.transform.Find("Coin").Find("CoinText").GetComponent<TextMeshProUGUI>().text = getCoinCollected();
     }
 
     string getCoinCollected() {
@@ -26,5 +26,13 @@ public class VictoryUI : Singleton<VictoryUI>
     }
     public void replay() {
         GameManager.Instance.replay();
+    }
+
+    public void nextLevel() {
+        GameManager.Instance.goToNextLevel();
+    }
+
+    public void goToMainMenu() {
+        GameManager.Instance.goToChooseLevelScene();
     }
 }
