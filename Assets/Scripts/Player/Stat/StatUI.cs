@@ -37,7 +37,7 @@ public class StatUI : Singleton<StatUI>
         transform.Find("Name").GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetString(PlayerPrefsKeys.PLAYER_NAME, "");
     }
 
-    private void setAvatar() {
+    public void setAvatar() {
         transform.Find("CharacterImage").GetComponent<Image>().sprite 
             = getAvatar(PlayerPrefs.GetString(PlayerPrefsKeys.CHARACTER_NAME, "fox"));
 

@@ -362,6 +362,7 @@ public class PlayerMovementController : MonoBehaviour
 
     //----MOVEMENT SKILLS---------------------------------------------------------------------------------//
     public void higherJump(float multiplier) {
+        Destroy(higherJumpEffect);
         higherJumpActivated = true;
         higherJumpMultiplier = multiplier;
         higherJumpEffect = Instantiate(Resources.Load<GameObject>("Effects/HigherJumpEffect"), new Vector2(-0.07f, -0.9f), Quaternion.identity);
@@ -378,6 +379,8 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     public void higherSpeed(float multiplier, float time) {
+         Destroy(higherSpeedEffect);
+
         higherSpeedMultiplier = multiplier;
         higherSpeedEffect = Instantiate(Resources.Load<GameObject>("Effects/HigherSpeedEffect"), new Vector2(-0.07f, -0.4f), Quaternion.identity);
         higherSpeedEffect.transform.SetParent(this.gameObject.transform, false);

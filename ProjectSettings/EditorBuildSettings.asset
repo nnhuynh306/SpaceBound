@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu/ChooseLevelMenu.unity
     guid: 0db505a5e2e986840bc3f81dbaace6ab
+  - enabled: 1
+    path: Assets/Scenes/Menu/ChooseAvatarMenu.unity
+    guid: 038f0bded11cdad4f92648b139774c39
   m_configObjects: {}

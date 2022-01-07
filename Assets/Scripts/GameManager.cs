@@ -154,6 +154,16 @@ public class GameManager : Singleton<GameManager>
 
     }
 
+    public void openAvatarShop() {
+        SceneManager.LoadScene("ChooseAvatarMenu", LoadSceneMode.Additive);
+    }
+
+    public void closeAvatarShop() {
+        SceneManager.UnloadSceneAsync("ChooseAvatarMenu");
+        FindObjectOfType<PlayerAnimationController>().loadAvatar();
+        StatUI.Instance.setAvatar();
+    }
+
     enum State {
         IS_FINISHING,
         GAME_OVER,
