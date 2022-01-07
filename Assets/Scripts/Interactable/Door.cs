@@ -27,14 +27,14 @@ public abstract class Door : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (!playerEntered) {
+        if (!playerEntered && other.gameObject.CompareTag("Player's Body Collider")) {
             playerInput.Player.Interact.performed += interact;
             playerEntered = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (playerEntered) {
+        if (playerEntered && other.gameObject.CompareTag("Player's Body Collider")) {
             playerInput.Player.Interact.performed -= interact;
             playerEntered = false;
         }

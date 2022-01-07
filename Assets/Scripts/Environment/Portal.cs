@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Portal : MonoBehaviour
+public abstract class Portal : MonoBehaviour
 {
     Transform portalImageTransform;
 
@@ -26,9 +26,11 @@ public class Portal : MonoBehaviour
         if (!finished) {
             spinSpeed = 5;
             finished = true;
-            GameManager.Instance.finishGame();
             AudioManager.Instance.playOneAtATime("Portal");
             other.gameObject.GetComponentInParent<PlayerMovementController>().stickToPosition(gameObject.transform.position);
+            portalEnter();
         }
     }
+
+    protected abstract void portalEnter();
 }

@@ -10,4 +10,6 @@ public class PlayerPrefsKeys
     public static string CHARACTER_UNLOCKED_PREFIX = "character_unlocked";
 
     public static string PLAYER_COIN = "player_coin";
+
+    public static string CURRENT_LEVEL = "current_level";
 }

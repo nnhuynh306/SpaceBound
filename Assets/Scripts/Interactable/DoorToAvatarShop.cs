@@ -11,5 +11,4 @@ public class DoorToAvatarShop : Door
         Debug.Log("interact");
         GameManager.Instance.openAvatarShop();
     }
-
 }

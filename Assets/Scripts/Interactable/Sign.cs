@@ -26,7 +26,7 @@ public class Sign : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (!playerEntered) {
+        if (!playerEntered && other.gameObject.CompareTag("Player's Body Collider")) {
             DialogBoxController.Instance.setText(text);
             DialogBoxController.Instance.show();
             playerEntered = true;
@@ -34,7 +34,7 @@ public class Sign : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (playerEntered) {
+        if (playerEntered && other.gameObject.CompareTag("Player's Body Collider")) {
             DialogBoxController.Instance.hide();
             playerEntered = false;
         }
