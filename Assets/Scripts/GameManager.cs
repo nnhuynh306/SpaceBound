@@ -229,6 +229,9 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void goToNextLevel() {
-
+        int thisLevel = PlayerPrefs.GetInt(PlayerPrefsKeys.CURRENT_LEVEL);
+        int nextLevel = thisLevel + 1;
+        SceneManager.LoadScene("Level_" + nextLevel);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.CURRENT_LEVEL, nextLevel);
     }
 }
