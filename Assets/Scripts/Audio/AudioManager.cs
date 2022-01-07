@@ -12,6 +12,7 @@ public class AudioManager : Singleton<AudioManager>
         foreach(Sound sound in sounds) {
             sound.source = gameObject.AddComponent<AudioSource>();
         }
+        
         float volume = PlayerPrefs.GetFloat("volume");
         bool isMute = PlayerPrefs.GetInt("ismute") == 0 ? false : true;
         HandlerMute(isMute);
@@ -56,13 +57,7 @@ public class AudioManager : Singleton<AudioManager>
             return;
         }
 
-        sound.source.clip = sound.clip;
-        sound.source.volume = sound.volume;
-        sound.source.pitch = sound.pitch;
-        sound.source.loop = sound.loop;
-        sound.source.outputAudioMixerGroup = sound.output;
-
-        sound.source.Play();
+        playSound(sound, sound.volume, true);
     }
 
     public void playOneAtATime(string name) {
@@ -72,15 +67,7 @@ public class AudioManager : Singleton<AudioManager>
             return;
         }
 
-        sound.source.clip = sound.clip;
-        sound.source.volume = sound.volume;
-        sound.source.pitch = sound.pitch;
-        sound.source.loop = sound.loop;
-        sound.source.outputAudioMixerGroup = sound.output;
-
-        if (!sound.source.isPlaying) {
-            sound.source.Play();      
-        }  
+        playSound(sound, sound.volume, false);
     }
 
     public void stop(string name) {
@@ -96,22 +83,16 @@ public class AudioManager : Singleton<AudioManager>
     public void play(string name, float volume) {
         Sound sound = findSound(name);
 
-        if (sound == null) {
-            return;
-        }
-
-        sound.source.volume = volume;
-        sound.source.clip = sound.clip;
-        sound.source.pitch = sound.pitch;
-        sound.source.loop = sound.loop;
-        sound.source.outputAudioMixerGroup = sound.output;
-
-        sound.source.Play();
+        playSound(sound, volume, true);
     }
 
      public void playOneAtATime(string name, float volume) {
         Sound sound = findSound(name);
 
+        playSound(sound, volume, false);
+    }
+
+    private void playSound(Sound sound, float volume, Boolean async) {
         if (sound == null) {
             return;
         }
@@ -122,9 +103,13 @@ public class AudioManager : Singleton<AudioManager>
         sound.source.loop = sound.loop;
         sound.source.outputAudioMixerGroup = sound.output;
 
-        if (!sound.source.isPlaying) {
-            sound.source.Play();      
-        }  
+        if (async) {
+            sound.source.Play();   
+        } else {
+            if (!sound.source.isPlaying) {
+                sound.source.Play();      
+            } 
+        }
     }
 
     public float getSoundLength(String name) {

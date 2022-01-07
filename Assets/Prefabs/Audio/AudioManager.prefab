@@ -46,10 +46,9 @@ MonoBehaviour:
   sounds:
   - name: InGameTheme
     clip: {fileID: 8300000, guid: 7fc4a159011dc44048889e9a303227e6, type: 3}
-    volume: 1
+    volume: 0.149
     pitch: 1
     output: {fileID: 0}
-    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 1
   - name: MenuTheme
@@ -71,7 +70,6 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
-    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 1
   - name: PlayerCrounchRunning
@@ -79,7 +77,6 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
-    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 1
   - name: Grounded
@@ -87,7 +84,13 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
-    slider: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: PlayerHurt
+    clip: {fileID: 8300000, guid: e866a61f388bf254482a73d9ccbcbd01, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
     source: {fileID: 0}
     loop: 0
   - name: PlayerJump
@@ -95,7 +98,6 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1.5
     output: {fileID: 0}
-    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 0
   - name: EnemyDeath
@@ -103,7 +105,6 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
-    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 0
   - name: HealthCollected
@@ -111,7 +112,6 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
-    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 0
   - name: GemCollected
@@ -119,7 +119,6 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
-    slider: {fileID: 0}
     source: {fileID: 0}
     loop: 0
   - name: Portal
@@ -127,7 +126,69 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     output: {fileID: 0}
-    slider: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: StimStart
+    clip: {fileID: 8300000, guid: dc02733d4d378dd4088d11f85ceb5bff, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: StimLoop
+    clip: {fileID: 8300000, guid: 17f4dd61254cff44b89fc475df7396b5, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 1
+  - name: StimStop
+    clip: {fileID: 8300000, guid: 31979ed9c6315664596cef2a6a830d3b, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: StimStop
+    clip: {fileID: 8300000, guid: 31979ed9c6315664596cef2a6a830d3b, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: ShieldStart
+    clip: {fileID: 8300000, guid: 033a97b6e36ae5e48bb651f70079bd66, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: ShieldStop
+    clip: {fileID: 8300000, guid: b7f2b19c2a734be4ead97993229178f0, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: HigherJump
+    clip: {fileID: 8300000, guid: c6bf4caa51a7b9e4cbd9bd450fc858ae, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: Victory
+    clip: {fileID: 8300000, guid: cf4bc3093a6cae541b72d60c7a783b8b, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
+    source: {fileID: 0}
+    loop: 0
+  - name: Defeat
+    clip: {fileID: 8300000, guid: 77685d427a0a80b4f94a18b06258c154, type: 3}
+    volume: 1
+    pitch: 1
+    output: {fileID: 0}
     source: {fileID: 0}
     loop: 0
   slider: {fileID: 0}

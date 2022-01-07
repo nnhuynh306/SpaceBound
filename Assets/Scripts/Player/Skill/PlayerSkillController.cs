@@ -25,8 +25,8 @@ public class PlayerSkillController : MonoBehaviour
         playerInput.Player.Skill1.performed += Skill1Performed;
         playerInput.Player.Skill2.performed += Skill2Performed;
 
-        skills.Add(initSkill("higherJump", 0));
-        skills.Add(initSkill("Shield", 1));
+        skills.Add(initSkill("higherSpeed", 0));
+        skills.Add(initSkill("higherjump", 1));
        
     }
 
