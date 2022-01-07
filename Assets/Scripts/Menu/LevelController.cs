@@ -8,7 +8,7 @@ public class LevelController : MonoBehaviour
     // Start is called before the first frame update
     public void chooseLevel(int level)
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Level_"+level);
     }
 
     // Update is called once per frame
