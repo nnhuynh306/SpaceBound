@@ -15,6 +15,7 @@ TagManager:
   - Pause Menu
   - In-game UI
   - DialogBox
+  - Collectable
   layers:
   - Default
   - TransparentFX

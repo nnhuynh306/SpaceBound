@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+     enum State {
+        IS_FINISHING,
+        GAME_OVER,
+        PLAYING,
+        PAUSED
+    }
     PlayerInput playerInput;
 
     State state;
@@ -16,9 +22,11 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(pauseMenu);
         state = State.PLAYING;
         checkLevelSettings();
         checkLevelTheme();
+    
     }
 
     void checkLevelSettings() {
@@ -55,16 +63,13 @@ public class GameManager : Singleton<GameManager>
     }
 
     void OnPausePerformed(InputAction.CallbackContext callbackContext) {
-        if (Time.timeScale == 0) {
-            if (state == State.PAUSED) {
+        if (state == State.PAUSED) {
                 continueGame();
                 closePauseMenu();
-            }
-        } else {
-           if (state == State.PLAYING) {
+            
+        } else if (state == State.PLAYING) {
                 pauseGame();
                 openPauseMenu();
-           }
         }
     }
 
@@ -75,7 +80,7 @@ public class GameManager : Singleton<GameManager>
         pauseMenu.SetActive(true);
     }
 
-    void closePauseMenu() {
+    public void closePauseMenu() {
         if (pauseMenu == null) {
             findPauseMenu();
         }
@@ -85,6 +90,7 @@ public class GameManager : Singleton<GameManager>
     void findPauseMenu() {
         pauseMenu = GameObject.FindGameObjectWithTag("Pause Menu");
         if (pauseMenu == null) {
+            Debug.Log("create Pause");
             pauseMenu = createMenu("Prefabs/Menu/PauseMenu");
         }
     }
@@ -101,7 +107,7 @@ public class GameManager : Singleton<GameManager>
         FindObjectOfType<PlayerMovementController>().enableMovement();
     }
 
-    public void finishGame() {
+    public void victory() {
        if (state == State.PLAYING) {
             state = State.IS_FINISHING;
             Invoke("showVictoryScreen", 1);
@@ -178,6 +184,14 @@ public class GameManager : Singleton<GameManager>
 
     }
 
+    public void addCoin(int amount) {
+        if (amount <= 0) {
+            return;
+        }
+
+        setPlayerCoint(amount + getPlayerCoin());
+    }
+
     public void openAvatarShop() {
         if (chooseAvatarMenu == null) {
             chooseAvatarMenu = createMenu("Prefabs/Menu/ChooseAvatarMenu");
@@ -202,10 +216,19 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene(PlayerPrefs.GetString(PlayerPrefsKeys.CURRENT_LEVEL, "SampleScene"));
     }
 
-    enum State {
-        IS_FINISHING,
-        GAME_OVER,
-        PLAYING,
-        PAUSED
+    public void goToChooseLevelScene() {
+        SceneManager.LoadScene("ChooseLevelMenu");
+    }
+
+    public void goToMerchantLevel() {
+        SceneManager.LoadScene("MerchantLevel");
+    }
+    
+    private void OnDestroy() {
+        playerInput.Disable();
+    }
+
+    public void goToNextLevel() {
+
     }
 }

@@ -39,4 +39,8 @@ public abstract class Door : MonoBehaviour
             playerEntered = false;
         }
     }
+
+    private void OnDestroy() {
+        playerInput.Disable();
+    }
 }

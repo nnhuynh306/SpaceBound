@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6609416606215035524}
   - component: {fileID: 6609416606215035576}
   - component: {fileID: 6609416606215035579}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cherry
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,8 +118,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6609416606215035524}
   animationTriggerName: Interacted
-  collectedSound: 
+  collectedSound: HealthCollected
   collectedEffectPrefab: {fileID: 2023331950670526085, guid: cb520db11fa9b9a44b195fad0954aceb, type: 3}
+  collected: 0
   health: 1
 --- !u!61 &6609416606215035579
 BoxCollider2D:

@@ -11,6 +11,8 @@ public abstract class CollectableController : MonoBehaviour
     public string collectedSound;
 
     public GameObject collectedEffectPrefab;
+
+    public bool collected = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,14 +26,6 @@ public abstract class CollectableController : MonoBehaviour
     }
 
     public abstract void applyOnPlayer(GameObject player);
-    
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Player")) {
-            applyOnPlayer(other.gameObject);
-            playAnimation();
-            playAudio();
-        }
-    }
 
     private void playAnimation() {
         Instantiate(collectedEffectPrefab, gameObject.transform.position, Quaternion.identity);
@@ -40,5 +34,14 @@ public abstract class CollectableController : MonoBehaviour
 
     private void playAudio() {
         AudioManager.Instance.play(collectedSound);
+    }
+
+    public void collectedBy(GameObject gameObject) {
+        if (!collected) {
+             applyOnPlayer(gameObject);
+            playAnimation();
+            playAudio();
+            collected = true;
+        }
     }
 }

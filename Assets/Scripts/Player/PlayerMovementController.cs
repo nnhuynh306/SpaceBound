@@ -96,6 +96,8 @@ public class PlayerMovementController : MonoBehaviour
         playerController = GetComponent<PlayerController>();
 
         assignInput();
+
+        enableLethalInteraction();
     }
 
     void assignInput() {
@@ -401,5 +403,13 @@ public class PlayerMovementController : MonoBehaviour
         AudioManager.Instance.stop("StimLoop");
         AudioManager.Instance.playOneAtATime("StimStop");
         Destroy(higherSpeedEffect);
+    }
+
+    private void OnDestroy() {
+        clean();
+    }
+
+    public void clean() {
+        playerInput.Disable();
     }
 }
