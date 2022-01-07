@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu/ChooseLevelMenu.unity
     guid: 0db505a5e2e986840bc3f81dbaace6ab
+  - enabled: 1
+    path: Assets/Scenes/MerchantLevel.unity
+    guid: d1a5c8cec458f004396be8dfe7b17893
   m_configObjects: {}

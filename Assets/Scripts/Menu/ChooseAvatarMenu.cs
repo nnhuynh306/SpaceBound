@@ -120,4 +120,8 @@ public class ChooseAvatarMenu : MonoBehaviour
     void unlockFail() {
         
     }
+
+    public void close() {
+        GameManager.Instance.closeAvatarShop();
+    }
 }

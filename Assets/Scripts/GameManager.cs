@@ -11,27 +11,41 @@ public class GameManager : Singleton<GameManager>
     State state;
 
     private GameObject pauseMenu;
+
+    private GameObject chooseAvatarMenu;
     // Start is called before the first frame update
     void Start()
     {
         state = State.PLAYING;
-        checkLevelMenu();
+        checkLevelSettings();
+        checkLevelTheme();
     }
 
-    void checkLevelMenu() {
-        if (SceneManager.GetActiveScene().name.ToLower().StartsWith("level") || SceneManager.GetActiveScene().name.Equals("SampleScene")) {
+    void checkLevelSettings() {
+        if (SceneManager.GetActiveScene().name.ToLower().StartsWith("level") || SceneManager.GetActiveScene().name.Equals("SampleScene")
+         || SceneManager.GetActiveScene().name.Equals("MerchantLevel")) {
             playerInput = new PlayerInput();
             playerInput.Player.Pause.Enable();
 
             playerInput.Player.Pause.performed += OnPausePerformed;
 
-            AudioManager.Instance.playOneAtATime("InGameTheme");
-
             closePauseMenu();
         } else {
-            
+        
+
+        }
+    }
+
+    void checkLevelTheme() {
+        if (SceneManager.GetActiveScene().name.ToLower().StartsWith("level") || SceneManager.GetActiveScene().name.Equals("SampleScene")) {
+            AudioManager.Instance.playOneAtATime("InGameTheme");
+        } else if (SceneManager.GetActiveScene().name.Equals("MerchantLevel")) {
+            AudioManager.Instance.playOneAtATime("MerchantLevelTheme");
+        } else {
             AudioManager.Instance.playOneAtATime("MenuTheme");
         }
+
+        
     }
 
     // Update is called once per frame
@@ -70,14 +84,19 @@ public class GameManager : Singleton<GameManager>
 
     void findPauseMenu() {
         pauseMenu = GameObject.FindGameObjectWithTag("Pause Menu");
+        if (pauseMenu == null) {
+            pauseMenu = createMenu("Prefabs/Menu/PauseMenu");
+        }
     }
 
     public void pauseGame() {
+        state = State.PAUSED;
         Time.timeScale = 0;
         FindObjectOfType<PlayerMovementController>().disableMovement();
     }
 
     public void continueGame() {
+        state = State.PLAYING;
         Time.timeScale = 1;
         FindObjectOfType<PlayerMovementController>().enableMovement();
     }
@@ -99,17 +118,22 @@ public class GameManager : Singleton<GameManager>
     }
 
     private void showVictoryScreen() {
-        GameObject victoryUI = Instantiate(Resources.Load<GameObject>("Prefabs/Menu/VictoryUI"), Vector2.zero, Quaternion.identity);
-        victoryUI.transform.SetParent(GameObject.FindGameObjectWithTag("In-game UI").transform, false);
+        createMenu("Prefabs/Menu/VictoryUI");
 
         AudioManager.Instance.playOneAtATime("Victory");
     }
 
     private void showDefeatScreen() {
-        GameObject victoryUI = Instantiate(Resources.Load<GameObject>("Prefabs/Menu/GameOverMenu"), Vector2.zero, Quaternion.identity);
-        victoryUI.transform.SetParent(GameObject.FindGameObjectWithTag("In-game UI").transform, false);
+        createMenu("Prefabs/Menu/GameOverMenu");
 
         AudioManager.Instance.playOneAtATime("Defeat");
+    }
+
+    private GameObject createMenu(string path) {
+        GameObject menu = Instantiate(Resources.Load<GameObject>(path), Vector2.zero, Quaternion.identity);
+        menu.transform.SetParent(GameObject.FindGameObjectWithTag("In-game UI").transform, false);
+
+        return menu;
     }
 
     public void replay() {
@@ -152,6 +176,30 @@ public class GameManager : Singleton<GameManager>
             return true;
         }
 
+    }
+
+    public void openAvatarShop() {
+        if (chooseAvatarMenu == null) {
+            chooseAvatarMenu = createMenu("Prefabs/Menu/ChooseAvatarMenu");
+        } else {
+            chooseAvatarMenu.SetActive(true);
+        }
+    }
+
+    public void closeAvatarShop() {
+        chooseAvatarMenu.SetActive(false);
+        
+        FindObjectOfType<PlayerAnimationController>().loadAvatar();
+        StatUI.Instance.setAvatar();
+    }
+
+    public void finishMerchantLevel() {
+        Invoke("finishMerchantLevelMethod", 2f);
+        FindObjectOfType<PlayerController>().finish();
+    }
+
+    public void finishMerchantLevelMethod() {
+        SceneManager.LoadScene(PlayerPrefs.GetString(PlayerPrefsKeys.CURRENT_LEVEL, "SampleScene"));
     }
 
     enum State {

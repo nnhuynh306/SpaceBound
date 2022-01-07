@@ -178,6 +178,8 @@ public class PlayerController : MonoBehaviour
 
     //--SHIELD ----------//
     public void shield(float time) {
+        Destroy(shieldEffect);
+
         shieldActivated = true;
         shieldEffect = Instantiate(Resources.Load<GameObject>("Effects/ShieldEffect"), new Vector2(-0.07f, -0.3f), Quaternion.identity);
         shieldEffect.transform.SetParent(this.gameObject.transform, false);

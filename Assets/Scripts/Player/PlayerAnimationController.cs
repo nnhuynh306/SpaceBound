@@ -11,7 +11,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         
-        assignAvatar();
+        loadAvatar();
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class PlayerAnimationController : MonoBehaviour
         
     }
 
-    private void assignAvatar() {
+    public void loadAvatar() {
         animator.runtimeAnimatorController = GetAnimatorController(PlayerPrefs.GetString(PlayerPrefsKeys.CHARACTER_NAME, "fox"));
     }
 
