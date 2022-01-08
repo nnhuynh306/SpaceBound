@@ -584,7 +584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
       propertyPath: sounds.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
       propertyPath: sounds.Array.data[1].clip
@@ -783,6 +783,34 @@ PrefabInstance:
       value: BulletShooting
       objectReference: {fileID: 0}
     - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[23].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 42b83a427a8a4264c9b3e85ac84b37e9, type: 3}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[23].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[23].name
+      value: BossExplosionLoop
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[24].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b5c9760a2cb43ab449ed0c5dfde14336, type: 3}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[24].name
+      value: BossExplosionFinal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[25].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1bd36068a49e3934ebfdbc9b4b9bb79b, type: 3}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[25].name
+      value: ElectricSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
       propertyPath: sounds.Array.data[7].pitch
       value: 1
       objectReference: {fileID: 0}
@@ -807,6 +835,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[23].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[24].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[25].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
       propertyPath: sounds.Array.data[7].volume
       value: 1
       objectReference: {fileID: 0}
@@ -828,6 +868,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
       propertyPath: sounds.Array.data[22].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[23].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[24].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319501935653646587, guid: 32eeeeeef86299d4d98e942051234bfa, type: 3}
+      propertyPath: sounds.Array.data[25].volume
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -950,6 +1002,70 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13fbcfff11f0e514387604f46b8291ba, type: 3}
+--- !u!1 &613408203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 613408206}
+  - component: {fileID: 613408205}
+  - component: {fileID: 613408204}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &613408204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613408203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05068eb26fc877843a902863380cf624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portalResourcePath: Prefabs/Environment/VictoryPortal
+  position: {x: 0, y: -15.48}
+--- !u!114 &613408205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613408203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192f0c9149254a341a68a358f589141d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possiblePositions:
+  - {x: 0, y: -15.48}
+  - {x: 2, y: -15.48}
+  - {x: 4, y: -15.48}
+  - {x: -2, y: -15.48}
+  - {x: -4, y: -15.48}
+--- !u!4 &613408206
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613408203}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.600957, y: -2.4221392, z: -897.26794}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &674715186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3380,6 +3496,7 @@ GameObject:
   - component: {fileID: 1240369872}
   - component: {fileID: 1240369871}
   - component: {fileID: 1240369870}
+  - component: {fileID: 1240369874}
   m_Layer: 5
   m_Name: BossUI
   m_TagString: Untagged
@@ -3468,6 +3585,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1240369874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240369869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced174691c4059849a26f39c674c8e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteBlinkingTimer: 0
+  spriteBlinkingMiniDuration: 0.1
+  isBlinking: 0
 --- !u!1 &1261861391
 GameObject:
   m_ObjectHideFlags: 0
@@ -3481,6 +3613,8 @@ GameObject:
   - component: {fileID: 1261861392}
   - component: {fileID: 1261861396}
   - component: {fileID: 1261861395}
+  - component: {fileID: 1261861397}
+  - component: {fileID: 1261861398}
   m_Layer: 15
   m_Name: King Of Elves Dreyel
   m_TagString: Boss
@@ -3500,6 +3634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71b1d56da0405c46928f0862fd5c2ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killedGold: 1000
 --- !u!212 &1261861393
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3593,8 +3728,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97d6db80115e3346a02a5252ad99054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  currentHealth: 10
+  maxHealth: 2
+  currentHealth: 2
+  bossController: {fileID: 0}
+--- !u!114 &1261861397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261861391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced174691c4059849a26f39c674c8e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteBlinkingTimer: 0
+  spriteBlinkingMiniDuration: 0.1
+  isBlinking: 0
+--- !u!114 &1261861398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261861391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e644ee54fd230e478696687c633a68c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteBlinkingMiniDuration: 0.3
+  isBlinking: 0
+  accelerateMiniDuration: 0.1
+  accelerateDelayTime: 2
 --- !u!1 &1290953470
 GameObject:
   m_ObjectHideFlags: 0
@@ -4547,55 +4714,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!1 &1918550936
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1918550938}
-  - component: {fileID: 1918550937}
-  m_Layer: 0
-  m_Name: DamageBossCollectableSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1918550937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918550936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192f0c9149254a341a68a358f589141d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  possiblePositions:
-  - {x: 0, y: -15.48}
-  - {x: 2, y: -15.48}
-  - {x: 4, y: -15.48}
-  - {x: -2, y: -15.48}
-  - {x: -4, y: -15.48}
---- !u!4 &1918550938
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918550936}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.672881, y: -14.323967, z: -889.48303}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6980019259907346907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4653,3 +4771,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee9e63bc99a68fa4dbf2c4a35df4ce67, type: 3}
+--- !u!1 &6980019259907346908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6980019260471335456, guid: ee9e63bc99a68fa4dbf2c4a35df4ce67, type: 3}
+  m_PrefabInstance: {fileID: 6980019259907346907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6980019259907346909
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6980019259907346908}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87989bb47c1c37a4fb6fc84a588c9ef6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

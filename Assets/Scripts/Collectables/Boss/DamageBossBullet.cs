@@ -78,10 +78,10 @@ public class DamageBossBullet : MonoBehaviour
     private void hitBoss(GameObject boss) {
         destroyed = true;
 
+        AudioManager.Instance.playOneAtATime("ElectricSound");
+
         Instantiate(Resources.Load<GameObject>(hitEffectPath), this.gameObject.transform.position, Quaternion.identity);
 
         Destroy(gameObject);
-
-        DamageBossCollectableSpawner.Instance.spawnNew();
     }
 }

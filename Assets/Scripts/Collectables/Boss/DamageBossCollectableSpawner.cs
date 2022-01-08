@@ -5,6 +5,8 @@ using UnityEngine;
 public class DamageBossCollectableSpawner : Singleton<DamageBossCollectableSpawner>
 {
     public Vector2[] possiblePositions;
+
+    GameObject prefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,14 @@ public class DamageBossCollectableSpawner : Singleton<DamageBossCollectableSpawn
     }
 
     private void createDamageBossCollectableAt(Vector2 position) {
-        Instantiate(Resources.Load<GameObject>("Boss/DamageBossCollectable"), position, Quaternion.identity);
+        Instantiate(getPrefab(), position, Quaternion.identity);
+    }
+
+    private GameObject getPrefab() {
+        if (prefab == null) {
+            prefab = Resources.Load<GameObject>("Boss/DamageBossCollectable");
+        }
+
+        return prefab;
     }
 }

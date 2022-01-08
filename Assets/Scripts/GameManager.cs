@@ -301,4 +301,10 @@ public class GameManager : Singleton<GameManager>
     public void closeSettingMenu() {
         settingMenu.SetActive(false);
     }
+
+    public void stopTheme() {
+        AudioManager.Instance.stop("InGameTheme");
+        AudioManager.Instance.stop("BossTheme");
+        AudioManager.Instance.stop("MenuTheme");
+    }
 }
