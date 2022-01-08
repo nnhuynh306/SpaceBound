@@ -106,7 +106,6 @@ public class PlayerController : MonoBehaviour
         if (bodyAndHeadDoubleCollisionCheck(other)) {
             return;
         }
-        Debug.Log(other.gameObject.tag);
         OnDamagedCheck(other);
     }
 
@@ -137,7 +136,12 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnDamagedCheck(Collision2D other) {
-       if (!isInvincible) {
+        if (other.gameObject.CompareTag("DeathZone")) {
+            playerHealthController.instantDeath();
+            return;
+        }
+
+        if (!isInvincible) {
             if (other.gameObject.CompareTag("Enemy")) {
                 hitEnemy(other.gameObject);
             }

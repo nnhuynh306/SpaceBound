@@ -76,4 +76,8 @@ public class PlayerHealthController : MonoBehaviour
     public void gameOver() {
         GameManager.Instance.defeated();
     }
+
+    public void instantDeath() {
+        damaged(health + shield);
+    }
 }

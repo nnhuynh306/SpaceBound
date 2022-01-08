@@ -3955,7 +3955,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505891140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.428767, y: 0.017874718, z: -10}
+  m_LocalPosition: {x: -6.4337645, y: 0.017874718, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4914,7 +4914,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1859932081
 RectTransform:
@@ -5051,7 +5051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1534294847937223568, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 1534294847937223568, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5071,11 +5071,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1534294847937223568, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1534294847937223568, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000015258789
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1534294847937223568, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

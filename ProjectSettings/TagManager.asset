@@ -16,6 +16,8 @@ TagManager:
   - In-game UI
   - DialogBox
   - Collectable
+  - DeathZone
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -31,9 +33,9 @@ TagManager:
   - Ignore Physic
   - LethalObjects
   - Player Interact
-  - 
-  - 
-  - 
+  - DeathZone
+  - FlyingBoss
+  - Boss Interact
   - 
   - 
   - 
