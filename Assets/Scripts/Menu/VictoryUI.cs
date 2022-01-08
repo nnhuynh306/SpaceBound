@@ -8,6 +8,7 @@ public class VictoryUI : Singleton<VictoryUI>
     // Start is called before the first frame update
     void Start()
     {
+        
         setCoin();
         GameManager.Instance.addCoin(getCoinCollected());
     }

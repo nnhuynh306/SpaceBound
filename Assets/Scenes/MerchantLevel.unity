@@ -3837,11 +3837,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4625069240771233866, guid: 7c3b5ce5cee4a5944ac83aa2725c2456, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.38
+      value: -11.86
       objectReference: {fileID: 0}
     - target: {fileID: 4625069240771233866, guid: 7c3b5ce5cee4a5944ac83aa2725c2456, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.92
+      value: -3.96
       objectReference: {fileID: 0}
     - target: {fileID: 4625069240771233866, guid: 7c3b5ce5cee4a5944ac83aa2725c2456, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4467,6 +4467,69 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1354640263
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2699440077170577136, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: text
+      value: <color=#B80B03><b>WELCOME TO THE MERCHANT TOWN</b></color><br>You can
+        change, buy characters or skills here<br>Go to the portal on the left to
+        enter level
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699440077170577137, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: m_Name
+      value: WelcomeSign
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699440077170577138, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699440077170577138, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699440077170577138, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699440077170577138, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699440077170577138, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699440077170577138, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699440077170577138, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699440077170577138, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699440077170577138, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699440077170577138, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699440077170577138, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
 --- !u!1 &1366115918
 GameObject:
   m_ObjectHideFlags: 0
@@ -4590,11 +4653,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5292373178067659964, guid: 13fbcfff11f0e514387604f46b8291ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.38
+      value: -11.86
       objectReference: {fileID: 0}
     - target: {fileID: 5292373178067659964, guid: 13fbcfff11f0e514387604f46b8291ba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.34
+      value: -4.38
       objectReference: {fileID: 0}
     - target: {fileID: 5292373178067659964, guid: 13fbcfff11f0e514387604f46b8291ba, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5030,66 +5093,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogBox
       objectReference: {fileID: 0}
-    - target: {fileID: 1534294847937223571, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294847963514665, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294847963514670, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294847963514670, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294847963514670, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 685.0766
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294847963514670, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 118.0385
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294847963514670, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294847963514670, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -59.019
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294848101062345, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294848101062350, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294848101062350, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294848101062350, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -196
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294848101062350, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -47
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294848101062351, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_fontSize
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534294848101062351, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b1165ea1c629c3438517e43df0fc6e8, type: 3}
 --- !u!1001 &2203683002611780135
@@ -5156,9 +5159,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2699440077170577136, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
+      propertyPath: text
+      value: <color=#B80B03><b>AVATAR SHOP</b></color><br> Press F when standing
+        in front of the door to enter
+      objectReference: {fileID: 0}
     - target: {fileID: 2699440077170577137, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
       propertyPath: m_Name
-      value: Sign
+      value: AvatarHouseSign
       objectReference: {fileID: 0}
     - target: {fileID: 2699440077170577138, guid: d1a3275b2cc8f7845a3453b29c31a816, type: 3}
       propertyPath: m_RootOrder

@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class LevelController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public void chooseLevel(int level)
+    public static void chooseLevel(int level)
     {
-        SceneManager.LoadScene("SampleScene");
+        GameManager.Instance.goToLevel(level);
     }
 
     // Update is called once per frame
