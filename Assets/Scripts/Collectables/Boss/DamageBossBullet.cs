@@ -42,7 +42,7 @@ public class DamageBossBullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Boss") && !destroyed) {
             other.gameObject.GetComponent<BossHealthController>().damaged(damageDealt);
-            hitBoss();
+            hitBoss(other.gameObject);
         }
     }
 
@@ -70,20 +70,18 @@ public class DamageBossBullet : MonoBehaviour
         if (movingTowardBoss) {
             GameObject boss = FindObjectOfType<BossController>().gameObject;
 
-            Vector3 movePosition = rigidBody.position;
- 
-            movePosition.x = Mathf.MoveTowards(transform.position.x, boss.transform.position.x, movingSpeed * Time.fixedDeltaTime);
-            movePosition.y = Mathf.MoveTowards(transform.position.y, boss.transform.position.y, movingSpeed * Time.fixedDeltaTime);
-            
+            Vector2 movePosition = Vector2.MoveTowards(rigidBody.position, boss.transform.position,  movingSpeed * Time.fixedDeltaTime);
             rigidBody.MovePosition(movePosition);
         }
     }
 
-    private void hitBoss() {
+    private void hitBoss(GameObject boss) {
         destroyed = true;
 
-        Instantiate(Resources.Load<GameObject>(hitEffectPath), Vector3.zero, Quaternion.identity).transform.SetParent(gameObject.transform, false);
+        Instantiate(Resources.Load<GameObject>(hitEffectPath), this.gameObject.transform.position, Quaternion.identity);
 
         Destroy(gameObject);
+
+        DamageBossCollectableSpawner.Instance.spawnNew();
     }
 }

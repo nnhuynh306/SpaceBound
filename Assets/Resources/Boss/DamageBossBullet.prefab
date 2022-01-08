@@ -4927,7 +4927,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -4997,7 +4997,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -5018,6 +5018,7 @@ MonoBehaviour:
   shootingSound: BulletShooting
   explodedSound: 
   scalingSound: BulletCharging
+  hitEffectPath: Boss/DamageBossBulletHit
   movingSpeed: 20
   scalingMultiplier: 1.001
   finalScale: {x: 4, y: 4, z: 4}

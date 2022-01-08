@@ -10,8 +10,6 @@ public class BossHealthBar : Singleton<BossHealthBar>
     private void Start() {
         maskRectTransform = transform.Find("Mask").GetComponent<RectTransform>();
         maxHealthBarLength = maskRectTransform.sizeDelta.x;
-
-
     }
     public void setHealthPercent(float percent) {
         maskRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxHealthBarLength * percent);
