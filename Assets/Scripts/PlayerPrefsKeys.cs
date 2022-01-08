@@ -13,5 +13,7 @@ public class PlayerPrefsKeys
 
     public static string CURRENT_LEVEL = "current_level";
 
+    public static string MAX_PLAYER_LEVEL = "max_player_level";
+
     public static string CURRENT_LEVEL_MONEY = "current_level_money";
 }

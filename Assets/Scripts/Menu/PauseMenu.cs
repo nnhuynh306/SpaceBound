@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void setting() {
-
+        GameManager.Instance.openSettingMenu();
     }
 
     public void quit() {

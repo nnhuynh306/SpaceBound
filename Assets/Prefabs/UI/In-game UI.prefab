@@ -195,6 +195,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: StatUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3891804937864062168, guid: 0c261787e3976e14b9b62127f816ed1b, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891804937864062168, guid: 0c261787e3976e14b9b62127f816ed1b, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891804937864062168, guid: 0c261787e3976e14b9b62127f816ed1b, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891804937864062168, guid: 0c261787e3976e14b9b62127f816ed1b, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c261787e3976e14b9b62127f816ed1b, type: 3}
 --- !u!224 &6823426349334070876 stripped

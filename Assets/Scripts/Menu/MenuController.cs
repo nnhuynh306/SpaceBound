@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System;
 
 public class MenuController : MonoBehaviour
 {
@@ -19,14 +21,22 @@ public class MenuController : MonoBehaviour
     }
 
     public void StartGame() {
-        SceneManager.LoadScene("ChooseLevelMenu");
+        String name;
+        try {
+            name = transform.Find("InputField").Find("Text").GetComponent<Text>().text;
+        } catch (Exception e) {
+            name = "";
+        }
+        GameManager.Instance.startNewGame(name);
     }
 
     public void SetName() {
        
     }
 
-    public void LoadGame() { }
+    public void LoadGame() {
+        GameManager.Instance.loadGame();
+    }
 
     public void OptionMenu() { }
 

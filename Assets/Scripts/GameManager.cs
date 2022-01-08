@@ -19,10 +19,11 @@ public class GameManager : Singleton<GameManager>
     private GameObject pauseMenu;
 
     private GameObject chooseAvatarMenu;
+
+    private GameObject settingMenu;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(pauseMenu);
         state = State.PLAYING;
         checkLevelSettings();
         checkLevelTheme();
@@ -110,9 +111,27 @@ public class GameManager : Singleton<GameManager>
     public void victory() {
        if (state == State.PLAYING) {
             state = State.IS_FINISHING;
+
+            checkMaxPlayerLevel();
+
             Invoke("showVictoryScreen", 1);
+
             FindObjectOfType<PlayerController>().finish();
        }
+    }
+
+    private void checkMaxPlayerLevel() {
+        int currentLevel = PlayerPrefs.GetInt(PlayerPrefsKeys.CURRENT_LEVEL, 1);
+        if (currentLevel == PlayerPrefs.GetInt(PlayerPrefsKeys.MAX_PLAYER_LEVEL, 1)) {
+            unlockNextLevel();
+        }
+    }
+
+    private void unlockNextLevel() {
+        int maxPlayerLevel = PlayerPrefs.GetInt(PlayerPrefsKeys.MAX_PLAYER_LEVEL, 1);
+        if (maxPlayerLevel< GameConstants.MAX_POSSIBLE_LEVEL) {
+            PlayerPrefs.SetInt(PlayerPrefsKeys.MAX_PLAYER_LEVEL, maxPlayerLevel + 1);
+        }
     }
 
     public void defeated() {
@@ -213,7 +232,8 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void finishMerchantLevelMethod() {
-        SceneManager.LoadScene(PlayerPrefs.GetString(PlayerPrefsKeys.CURRENT_LEVEL, "SampleScene"));
+        int currentLevel = PlayerPrefs.GetInt(PlayerPrefsKeys.CURRENT_LEVEL, 1);
+        SceneManager.LoadScene("Level_" + currentLevel);
     }
 
     public void goToChooseLevelScene() {
@@ -231,7 +251,50 @@ public class GameManager : Singleton<GameManager>
     public void goToNextLevel() {
         int thisLevel = PlayerPrefs.GetInt(PlayerPrefsKeys.CURRENT_LEVEL);
         int nextLevel = thisLevel + 1;
-        SceneManager.LoadScene("Level_" + nextLevel);
         PlayerPrefs.SetInt(PlayerPrefsKeys.CURRENT_LEVEL, nextLevel);
+
+        goToMerchantLevel();
+    }
+
+    public void startNewGame(string name) {
+        resetPlayerPrefs();
+
+        PlayerPrefs.SetString(PlayerPrefsKeys.PLAYER_NAME, name);
+        goToChooseLevelScene();
+    }
+
+    private void resetPlayerPrefs() {
+        PlayerPrefs.DeleteAll();
+
+        PlayerPrefs.SetInt(PlayerPrefsKeys.MAX_PLAYER_LEVEL, 1);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.PLAYER_COIN, 0);
+        PlayerPrefs.SetString(PlayerPrefsKeys.CHARACTER_NAME, "fox");
+    }
+
+    private void setBasicPlayerRefs() {
+        PlayerPrefs.SetInt(PlayerPrefsKeys.MAX_PLAYER_LEVEL, 1);
+    }
+
+    public void loadGame() {
+        goToChooseLevelScene();
+    }
+
+    public void goToLevel(int level) {
+        if (level <= 0 || level > PlayerPrefs.GetInt(PlayerPrefsKeys.MAX_PLAYER_LEVEL, 1)) {
+            return;
+        }
+
+        PlayerPrefs.SetInt(PlayerPrefsKeys.CURRENT_LEVEL, level);
+        goToMerchantLevel();
+
+    }
+
+    public void openSettingMenu() {
+        settingMenu = createMenu("Prefabs/Option");
+        createMenu("Prefabs/Settings");
+    }
+
+    public void closeSettingMenu() {
+        settingMenu.SetActive(false);
     }
 }

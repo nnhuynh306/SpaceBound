@@ -8,8 +8,7 @@ public class LevelController : MonoBehaviour
     // Start is called before the first frame update
     public static void chooseLevel(int level)
     {
-        SceneManager.LoadScene("Level_"+level);
-        PlayerPrefs.SetInt(PlayerPrefsKeys.CURRENT_LEVEL, level);
+        GameManager.Instance.goToLevel(level);
     }
 
     // Update is called once per frame
