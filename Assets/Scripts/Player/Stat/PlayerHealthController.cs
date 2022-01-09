@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealthController : MonoBehaviour
 {
     private int health = 1;
-    private int shield = 0;
+    private int shield = 3;
 
     private PlayerMovementController playerMovementController;
 

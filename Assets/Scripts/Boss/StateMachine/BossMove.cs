@@ -21,6 +21,7 @@ public class BossMove : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        finished = false;
         moveTimer = 0;
         moveTime = Random.Range(minmoveTime, maxmoveTime);
         moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);

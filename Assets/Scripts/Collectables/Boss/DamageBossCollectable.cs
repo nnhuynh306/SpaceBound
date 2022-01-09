@@ -7,6 +7,14 @@ public class DamageBossCollectable : MonoBehaviour
     bool collected = false;
     public string collectedSoundName = "DamageBossCollectableCollected";
 
+    private GameObject bullet;
+
+
+    private void Start() {
+        bullet = transform.Find("DamageBossBullet").gameObject;
+
+        disableBulletBossInteraction();
+    }
 
     private void Update() {
         
@@ -37,6 +45,17 @@ public class DamageBossCollectable : MonoBehaviour
         Destroy(transform.Find("Bubble").gameObject);
         Instantiate(Resources.Load<GameObject>("Boss/WaterEffect"), Vector2.zero, Quaternion.identity)
             .transform.SetParent(this.transform, false);
+        enableBulletBossLethalInteraction();
 
     }
+
+     public void disableBulletBossInteraction() {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Boss Interact"), LayerMask.NameToLayer("FlyingBoss"), true);
+    }
+
+    public void enableBulletBossLethalInteraction() {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Boss Interact"), LayerMask.NameToLayer("FlyingBoss"), false);
+
+    }
+
 }

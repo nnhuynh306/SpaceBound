@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6550169622505595824}
   - component: {fileID: 6550169622505595825}
   - component: {fileID: 6550169622505595838}
+  - component: {fileID: 1261861392}
   m_Layer: 15
   m_Name: King Of Elves Dreyel
   m_TagString: Boss
@@ -204,3 +205,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1261861392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6550169622505595817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065d96909d81f1e479cdcf4d4e5a527a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directions:
+  - {x: 1, y: 0}
+  - {x: 0.7, y: 0.7}
+  - {x: 0, y: 1}
+  - {x: 0.7, y: -0.7}
+  - {x: 0, y: -1}
+  - {x: -0.7, y: -0.7}
+  - {x: -1, y: 0}
+  - {x: -0.7, y: 0.7}
+  projectileSpeed: 200

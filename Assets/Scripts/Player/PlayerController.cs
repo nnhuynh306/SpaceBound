@@ -151,6 +151,9 @@ public class PlayerController : MonoBehaviour
             if (other.gameObject.CompareTag("Boss")) {
                 hitBoss(other.gameObject);
             }
+            if (other.gameObject.CompareTag("BossProjectile")) {
+                hitBossProjectile(other.gameObject);
+            }
        }
     }
 
@@ -189,6 +192,18 @@ public class PlayerController : MonoBehaviour
         }
 
         playerMovementController.knockback(gameObject);
+        playerHealthController.damaged(1);
+    }
+
+    public void hitBossProjectile(GameObject projectile) {
+        projectile.GetComponent<BossProjectile>().destroySelf();
+
+         if (shieldActivated) {
+            breakShield(gameObject);
+            return;
+        }
+
+        playerMovementController.knockback(projectile);
         playerHealthController.damaged(1);
     }
 

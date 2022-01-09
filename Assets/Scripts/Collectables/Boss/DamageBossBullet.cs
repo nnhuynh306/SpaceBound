@@ -46,6 +46,13 @@ public class DamageBossBullet : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Boss") && !destroyed) {
+            other.gameObject.GetComponent<BossHealthController>().damaged(damageDealt);
+            hitBoss(other.gameObject);
+        }
+    }
+
     public void released() {
         scalingBullet = true;
 
