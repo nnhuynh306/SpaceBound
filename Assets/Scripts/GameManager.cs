@@ -47,7 +47,12 @@ public class GameManager : Singleton<GameManager>
 
     void checkLevelTheme() {
         if (SceneManager.GetActiveScene().name.ToLower().StartsWith("level") || SceneManager.GetActiveScene().name.Equals("SampleScene")) {
-            AudioManager.Instance.playOneAtATime("InGameTheme");
+            AudioManager.Instance.playOneAtATime("BossTheme");
+            // if (PlayerPrefs.GetInt(PlayerPrefsKeys.CURRENT_LEVEL, 1) % 5 == 0) {
+            //     AudioManager.Instance.playOneAtATime("BossTheme");
+            // } else {
+            //     AudioManager.Instance.playOneAtATime("InGameTheme");
+            // }
         } else if (SceneManager.GetActiveScene().name.Equals("MerchantLevel")) {
             AudioManager.Instance.playOneAtATime("MerchantLevelTheme");
         } else {
@@ -296,5 +301,11 @@ public class GameManager : Singleton<GameManager>
 
     public void closeSettingMenu() {
         settingMenu.SetActive(false);
+    }
+
+    public void stopTheme() {
+        AudioManager.Instance.stop("InGameTheme");
+        AudioManager.Instance.stop("BossTheme");
+        AudioManager.Instance.stop("MenuTheme");
     }
 }

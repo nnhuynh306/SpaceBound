@@ -19,7 +19,7 @@ public abstract class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        portalImageTransform.Rotate( new Vector3( 0, 0, -100 * Time.deltaTime * spinSpeed) );
+        portalImageTransform.Rotate( new Vector3( 0, 0, -100 * Time.deltaTime * spinSpeed));
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

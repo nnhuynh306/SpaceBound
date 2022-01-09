@@ -4,10 +4,6 @@ using UnityEngine;
 
 public abstract class CollectableController : MonoBehaviour
 {
-    public Animator animator;
-
-    public string animationTriggerName = "Interacted";
-
     public string collectedSound;
 
     public GameObject collectedEffectPrefab;
