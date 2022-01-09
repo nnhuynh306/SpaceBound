@@ -139,7 +139,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void defeated() {
-        if (state != State.GAME_OVER) {
+        if (state != State.GAME_OVER && state != State.IS_FINISHING) {
             state = State.GAME_OVER;
             Invoke("showDefeatScreen", 1);
             FindObjectOfType<PlayerController>().killed();
@@ -306,5 +306,16 @@ public class GameManager : Singleton<GameManager>
         AudioManager.Instance.stop("InGameTheme");
         AudioManager.Instance.stop("BossTheme");
         AudioManager.Instance.stop("MenuTheme");
+    }
+
+    public void startDemo() {
+        PlayerPrefs.SetInt(PlayerPrefsKeys.MAX_PLAYER_LEVEL, 5);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.PLAYER_COIN, 100000);
+        
+        goToChooseLevelScene();
+    }
+
+    public void goToMainMenu() {
+        SceneManager.LoadScene("MainMenu");
     }
 }

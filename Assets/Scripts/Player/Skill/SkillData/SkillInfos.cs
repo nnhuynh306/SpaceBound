@@ -24,19 +24,19 @@ public class SkillInfos
         SkillInfo higherJump = new SkillInfo();
         higherJump.spritePath = "Sprite/Skills/HigherJump";
         higherJump.name = "higherJump";
-        higherJump.cooldownTime = 2;
+        higherJump.cooldownTime = 5;
         higherJump.skillPerformer = new HigherJumpSkillPerformer();
 
         SkillInfo shield = new SkillInfo();
         shield.spritePath = "Sprite/Skills/Shield";
         shield.name = "shield";
-        shield.cooldownTime = 7;
+        shield.cooldownTime = 15;
         shield.skillPerformer = new ShieldSkillPerformer();
 
         SkillInfo higherSpeed = new SkillInfo();
         higherSpeed.spritePath = "Sprite/Skills/HigherSpeed";
         higherSpeed.name = "higherSpeed";
-        higherSpeed.cooldownTime = 7;
+        higherSpeed.cooldownTime = 10;
         higherSpeed.skillPerformer = new HigherSpeedSkillPerformer();
 
         skillInfos.Add(higherJump);

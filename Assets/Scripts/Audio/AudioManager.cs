@@ -49,7 +49,6 @@ public class AudioManager : Singleton<AudioManager>
     private void HandlerMute(bool isMute)
     {
         this.isMute = isMute;
-        Debug.Log("isMute " + isMute);
         if (isMute)
         {
             AudioListener.volume = 0;
@@ -60,7 +59,6 @@ public class AudioManager : Singleton<AudioManager>
 
     private void HandlerSliderValueChanged(float value)
     {
-        Debug.Log("Value " + value);
         if (isMute) {
             AudioListener.volume = 0;
         } else {

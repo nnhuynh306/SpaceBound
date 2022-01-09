@@ -16,10 +16,11 @@ public class DamageBossBullet : MonoBehaviour
 
     public float movingSpeed = 20f;
 
-    [Range(1.0001f, 2f)]
-    public float scalingMultiplier = 1.001f;
+    private float scaleTime = 2f;
 
     public Vector3 finalScale = new Vector3(2f, 2f, 2f);
+
+    private Vector3 startScale;
 
     private Rigidbody2D rigidBody;
 
@@ -29,6 +30,7 @@ public class DamageBossBullet : MonoBehaviour
 
     private void Start() {
         rigidBody =GetComponent<Rigidbody2D>();
+        startScale = transform.localScale;
     }
 
     private void Update() {
@@ -62,7 +64,8 @@ public class DamageBossBullet : MonoBehaviour
     private void scaleBullet() {
         if (scalingBullet) {
             if (Vector3.Magnitude(transform.localScale) < Vector3.Magnitude(finalScale)) {
-                transform.localScale *= scalingMultiplier;
+                float scaleAmount = ((finalScale.x - startScale.x) * (Time.deltaTime / scaleTime));
+                transform.localScale += new Vector3(scaleAmount, scaleAmount, scaleAmount);
             } else {
                 scalingBullet = false;
                 movingTowardBoss = true;
@@ -85,10 +88,16 @@ public class DamageBossBullet : MonoBehaviour
     private void hitBoss(GameObject boss) {
         destroyed = true;
 
+        AudioManager.Instance.stop(scalingSound);
+
         AudioManager.Instance.playOneAtATime("ElectricSound");
 
         Instantiate(Resources.Load<GameObject>(hitEffectPath), this.gameObject.transform.position, Quaternion.identity);
 
         Destroy(gameObject);
+
+        if (gameObject.GetComponentInParent<DamageBossCollectable>() != null) {
+            Destroy(gameObject.transform.parent);
+        }
     }
 }
