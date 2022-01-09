@@ -310,6 +310,8 @@ MonoBehaviour:
   lethalLayers:
   - Enemy
   - LethalObjects
+  - FlyingBoss
+  - BossProjectile
   jumpChargeEffect: {fileID: 3930382031627582781}
 --- !u!50 &4625069240771233869
 Rigidbody2D:

@@ -18,6 +18,7 @@ TagManager:
   - Collectable
   - DeathZone
   - Boss
+  - BossProjectile
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - DeathZone
   - FlyingBoss
   - Boss Interact
-  - 
+  - BossProjectile
   - 
   - 
   - 

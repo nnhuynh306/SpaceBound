@@ -148,7 +148,24 @@ public class PlayerController : MonoBehaviour
             if (other.gameObject.CompareTag("LethalObject")) {
                 hitLethalObject(other.gameObject);
             }
+            if (other.gameObject.CompareTag("Boss")) {
+                hitBoss(other.gameObject);
+            }
        }
+    }
+
+    public void hitBoss(GameObject boss) {
+        BossController bossController = boss.GetComponent<BossController>();
+
+        if (!bossController.IsKilled) {
+            if (shieldActivated) {
+                breakShield(gameObject);
+                return;
+            }
+
+            playerMovementController.knockback(boss);
+            playerHealthController.damaged(1);
+        }
     }
 
     public void hitEnemy(GameObject enemy) {
