@@ -1600,10 +1600,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 3935887419568100968, guid: a2cefa2dee1310d458d1de45dac6b2fc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3935887419568100972, guid: a2cefa2dee1310d458d1de45dac6b2fc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1639,18 +1635,6 @@ PrefabInstance:
     - target: {fileID: 3935887419568100972, guid: a2cefa2dee1310d458d1de45dac6b2fc, type: 3}
       propertyPath: m_SizeDelta.y
       value: 469
-      objectReference: {fileID: 0}
-    - target: {fileID: 3935887419568100972, guid: a2cefa2dee1310d458d1de45dac6b2fc, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3935887419568100972, guid: a2cefa2dee1310d458d1de45dac6b2fc, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3935887419568100972, guid: a2cefa2dee1310d458d1de45dac6b2fc, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3935887419568100972, guid: a2cefa2dee1310d458d1de45dac6b2fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1704,10 +1688,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1334579705146441241}
-    - target: {fileID: 3935887419940997369, guid: a2cefa2dee1310d458d1de45dac6b2fc, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2cefa2dee1310d458d1de45dac6b2fc, type: 3}
 --- !u!1 &7710718136249635126 stripped

@@ -25,8 +25,8 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         state = State.PLAYING;
-        checkLevelSettings();
         checkLevelTheme();
+        checkLevelSettings();
     
     }
 
@@ -47,12 +47,11 @@ public class GameManager : Singleton<GameManager>
 
     void checkLevelTheme() {
         if (SceneManager.GetActiveScene().name.ToLower().StartsWith("level") || SceneManager.GetActiveScene().name.Equals("SampleScene")) {
-            AudioManager.Instance.playOneAtATime("BossTheme");
-            // if (PlayerPrefs.GetInt(PlayerPrefsKeys.CURRENT_LEVEL, 1) % 5 == 0) {
-            //     AudioManager.Instance.playOneAtATime("BossTheme");
-            // } else {
-            //     AudioManager.Instance.playOneAtATime("InGameTheme");
-            // }
+            if (PlayerPrefs.GetInt(PlayerPrefsKeys.CURRENT_LEVEL, 1) % 5 == 0) {
+                AudioManager.Instance.playOneAtATime("BossTheme");
+            } else {
+                AudioManager.Instance.playOneAtATime("InGameTheme");
+            }
         } else if (SceneManager.GetActiveScene().name.Equals("MerchantLevel")) {
             AudioManager.Instance.playOneAtATime("MerchantLevelTheme");
         } else {

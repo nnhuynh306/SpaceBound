@@ -8,26 +8,48 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] Slider slider;
     [SerializeField] Toggle mute;
 
+    bool isMute;
+
     private void Awake() {
         foreach(Sound sound in sounds) {
             sound.source = gameObject.AddComponent<AudioSource>();
         }
         
-        // float volume = PlayerPrefs.GetFloat("volume");
-        // bool isMute = PlayerPrefs.GetInt("ismute", 0) == 0 ? false : true;
-        // HandlerMute(isMute);
-        // HandlerSliderValueChanged(volume);
-        // if (slider != null)
-        // {
-        //     slider.value = volume;
-        //     mute.isOn = isMute;
-        //     slider.onValueChanged.AddListener(HandlerSliderValueChanged);
-        //     mute.onValueChanged.AddListener(HandlerMute);
-        // }
+        processSettings();
     }
+
+    private void processSettings() {
+
+        float volume = PlayerPrefs.GetFloat("volume", 1);
+        bool isMute = PlayerPrefs.GetInt("isMute", 0) == 0 ? false : true;
+
+        if (slider != null)
+        {
+
+            slider.onValueChanged.AddListener(HandlerSliderValueChanged);
+            mute.onValueChanged.AddListener(HandlerMute);
+
+            slider.value = volume;
+            mute.isOn = isMute;
+        }else {
+
+            HandlerMute(isMute);
+            HandlerSliderValueChanged(volume);
+        }
+    }
+
+    public void assignSliderAndMute(Slider slider, Toggle toggle) {
+        this.slider = slider;
+        mute = toggle;
+
+        processSettings();
+    }
+
 
     private void HandlerMute(bool isMute)
     {
+        this.isMute = isMute;
+        Debug.Log("isMute " + isMute);
         if (isMute)
         {
             AudioListener.volume = 0;
@@ -38,7 +60,12 @@ public class AudioManager : Singleton<AudioManager>
 
     private void HandlerSliderValueChanged(float value)
     {
-        AudioListener.volume = value;
+        Debug.Log("Value " + value);
+        if (isMute) {
+            AudioListener.volume = 0;
+        } else {
+            AudioListener.volume = value;
+        }
         PlayerPrefs.SetFloat("volume", value);
     }
 
