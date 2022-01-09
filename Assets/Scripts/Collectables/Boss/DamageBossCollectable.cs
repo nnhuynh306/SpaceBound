@@ -46,7 +46,6 @@ public class DamageBossCollectable : MonoBehaviour
         Instantiate(Resources.Load<GameObject>("Boss/WaterEffect"), Vector2.zero, Quaternion.identity)
             .transform.SetParent(this.transform, false);
         enableBulletBossLethalInteraction();
-
     }
 
      public void disableBulletBossInteraction() {

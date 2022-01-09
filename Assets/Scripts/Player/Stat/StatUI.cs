@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class StatUI : Singleton<StatUI>
 {
-    public GameObject healthPrefab;
-    public GameObject shieldPrefab;
+    private GameObject healthPrefab;
+    private GameObject shieldPrefab;
 
     private float healthIconDistance = 15;
 
@@ -75,8 +75,11 @@ public class StatUI : Singleton<StatUI>
     }
 
     void increase1Health() {
+        if (healthPrefab == null) {
+            healthPrefab = Resources.Load<GameObject>("Prefabs/UI/Heart");
+        }
         GameObject newHealth = Instantiate(healthPrefab, Vector2.zero, Quaternion.identity);
-        newHealth.transform.SetParent(gameObject.transform);
+        newHealth.transform.SetParent(gameObject.transform, false);
         newHealth.GetComponent<RectTransform>().anchoredPosition = getNewHealthIconRectTransformPos();
         healthIconArray.Add(newHealth);
     }
@@ -108,8 +111,11 @@ public class StatUI : Singleton<StatUI>
     }
 
     void increase1Shield() {
+        if (shieldPrefab == null) {
+            shieldPrefab = Resources.Load<GameObject>("Prefabs/UI/Shield");
+        }
         GameObject newShield = Instantiate(shieldPrefab, Vector2.zero, Quaternion.identity);
-        newShield.transform.SetParent(gameObject.transform);
+        newShield.transform.SetParent(gameObject.transform, false);
         newShield.GetComponent<RectTransform>().anchoredPosition = getNewShieldIconRectTransformPos();
         shieldIconArray.Add(newShield);
     }

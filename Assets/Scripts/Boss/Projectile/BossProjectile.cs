@@ -23,9 +23,10 @@ public class BossProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("DeathZone")) {
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("DeathZone")) {
             Destroy(gameObject);
         }
     }
+    
 }

@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour
     void checkFinishingAnimation() {
         if (isFinishing) {
             playerTransform.Rotate(new Vector3(0, 0, -1f));
-            playerTransform.localScale = playerTransform.localScale * 0.994f;
+            float scaleAmount = Time.deltaTime / 1;
+            playerTransform.localScale -= new Vector3((transform.localScale.x < 0)?-scaleAmount: scaleAmount, scaleAmount, scaleAmount);
         }
     }
 
