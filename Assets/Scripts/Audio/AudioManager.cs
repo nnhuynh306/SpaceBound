@@ -13,17 +13,17 @@ public class AudioManager : Singleton<AudioManager>
             sound.source = gameObject.AddComponent<AudioSource>();
         }
         
-        float volume = PlayerPrefs.GetFloat("volume");
-        bool isMute = PlayerPrefs.GetInt("ismute") == 0 ? false : true;
-        HandlerMute(isMute);
-        HandlerSliderValueChanged(volume);
-        if (slider != null)
-        {
-            slider.value = volume;
-            mute.isOn = isMute;
-            slider.onValueChanged.AddListener(HandlerSliderValueChanged);
-            mute.onValueChanged.AddListener(HandlerMute);
-        }
+        // float volume = PlayerPrefs.GetFloat("volume");
+        // bool isMute = PlayerPrefs.GetInt("ismute", 0) == 0 ? false : true;
+        // HandlerMute(isMute);
+        // HandlerSliderValueChanged(volume);
+        // if (slider != null)
+        // {
+        //     slider.value = volume;
+        //     mute.isOn = isMute;
+        //     slider.onValueChanged.AddListener(HandlerSliderValueChanged);
+        //     mute.onValueChanged.AddListener(HandlerMute);
+        // }
     }
 
     private void HandlerMute(bool isMute)

@@ -106,7 +106,6 @@ public class PlayerController : MonoBehaviour
         if (bodyAndHeadDoubleCollisionCheck(other)) {
             return;
         }
-        Debug.Log(other.gameObject.tag);
         OnDamagedCheck(other);
     }
 
@@ -137,14 +136,39 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnDamagedCheck(Collision2D other) {
-       if (!isInvincible) {
+        if (other.gameObject.CompareTag("DeathZone")) {
+            playerHealthController.instantDeath();
+            return;
+        }
+
+        if (!isInvincible) {
             if (other.gameObject.CompareTag("Enemy")) {
                 hitEnemy(other.gameObject);
             }
             if (other.gameObject.CompareTag("LethalObject")) {
                 hitLethalObject(other.gameObject);
             }
+            if (other.gameObject.CompareTag("Boss")) {
+                hitBoss(other.gameObject);
+            }
+            if (other.gameObject.CompareTag("BossProjectile")) {
+                hitBossProjectile(other.gameObject);
+            }
        }
+    }
+
+    public void hitBoss(GameObject boss) {
+        BossController bossController = boss.GetComponent<BossController>();
+
+        if (!bossController.IsKilled) {
+            if (shieldActivated) {
+                breakShield(gameObject);
+                return;
+            }
+
+            playerMovementController.knockback(boss);
+            playerHealthController.damaged(1);
+        }
     }
 
     public void hitEnemy(GameObject enemy) {
@@ -168,6 +192,18 @@ public class PlayerController : MonoBehaviour
         }
 
         playerMovementController.knockback(gameObject);
+        playerHealthController.damaged(1);
+    }
+
+    public void hitBossProjectile(GameObject projectile) {
+        projectile.GetComponent<BossProjectile>().destroySelf();
+
+         if (shieldActivated) {
+            breakShield(gameObject);
+            return;
+        }
+
+        playerMovementController.knockback(projectile);
         playerHealthController.damaged(1);
     }
 
