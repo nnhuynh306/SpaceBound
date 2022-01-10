@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3935887418594791882}
   - component: {fileID: 3935887418594791925}
   - component: {fileID: 3935887418594791924}
-  - component: {fileID: 3935887418594791927}
   m_Layer: 5
   m_Name: 800 x 600
   m_TagString: Untagged
@@ -123,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3935887418594791927}
+      - m_Target: {fileID: 8122944642038701120}
         m_TargetAssemblyTypeName: Resolution, Assembly-CSharp
         m_MethodName: setResolution600
         m_Mode: 1
@@ -147,19 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63625d4dee4d9f4983dfed2861a0325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3935887418594791927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3935887418594791921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04e86374fa0ca38488f82aaa0443f571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullscreenToggle: {fileID: 0}
 --- !u!1 &3935887418613428711
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +234,6 @@ GameObject:
   - component: {fileID: 3935887418631834226}
   - component: {fileID: 3935887418631834237}
   - component: {fileID: 3935887418631834236}
-  - component: {fileID: 3935887418631834239}
   m_Layer: 5
   m_Name: 1280 x 720
   m_TagString: Untagged
@@ -358,7 +343,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3935887418631834239}
+      - m_Target: {fileID: 8122944642038701120}
         m_TargetAssemblyTypeName: Resolution, Assembly-CSharp
         m_MethodName: setResolution720
         m_Mode: 1
@@ -382,19 +367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63625d4dee4d9f4983dfed2861a0325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3935887418631834239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3935887418631834233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04e86374fa0ca38488f82aaa0443f571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullscreenToggle: {fileID: 0}
 --- !u!1 &3935887418679612488
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +527,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3935887418756202599}
   - component: {fileID: 3935887418756202597}
-  - component: {fileID: 3935887418756202596}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -632,19 +603,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
---- !u!114 &3935887418756202596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3935887418756202598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04e86374fa0ca38488f82aaa0443f571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullscreenToggle: {fileID: 3935887418756202597}
 --- !u!1 &3935887418818409948
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +850,7 @@ GameObject:
   - component: {fileID: 3935887418965463443}
   - component: {fileID: 3935887418965463442}
   - component: {fileID: 3935887418965463453}
+  - component: {fileID: 8122944642038701120}
   m_Layer: 5
   m_Name: Resolution
   m_TagString: Untagged
@@ -980,6 +939,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8122944642038701120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3935887418965463455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e86374fa0ca38488f82aaa0443f571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullscreenToggle: {fileID: 3935887420433753342}
 --- !u!1 &3935887418967171280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,7 +1435,6 @@ GameObject:
   - component: {fileID: 3935887419149328510}
   - component: {fileID: 3935887419149328505}
   - component: {fileID: 3935887419149328504}
-  - component: {fileID: 3935887419149328507}
   m_Layer: 5
   m_Name: 2560 x 1440
   m_TagString: Untagged
@@ -1573,7 +1544,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3935887419149328507}
+      - m_Target: {fileID: 8122944642038701120}
         m_TargetAssemblyTypeName: Resolution, Assembly-CSharp
         m_MethodName: setResolution1440
         m_Mode: 1
@@ -1597,19 +1568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63625d4dee4d9f4983dfed2861a0325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3935887419149328507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3935887419149328485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04e86374fa0ca38488f82aaa0443f571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullscreenToggle: {fileID: 0}
 --- !u!1 &3935887419190292117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,6 +1981,7 @@ GameObject:
   - component: {fileID: 3935887419493227526}
   - component: {fileID: 3935887419493227521}
   - component: {fileID: 3935887419493227520}
+  - component: {fileID: 6409734582558021952}
   m_Layer: 5
   m_Name: Volumn
   m_TagString: Untagged
@@ -2111,6 +2070,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6409734582558021952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3935887419493227522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7a09bca82c0984d8fa3b67fff00f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3935887419494252531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,7 +2258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3935887419568100972
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2297,7 +2268,7 @@ RectTransform:
   m_GameObject: {fileID: 3935887419568100968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3935887420228356314}
   - {fileID: 3935887418965463452}
@@ -2384,7 +2355,6 @@ GameObject:
   - component: {fileID: 3935887419605500021}
   - component: {fileID: 3935887419605500020}
   - component: {fileID: 3935887419605500023}
-  - component: {fileID: 3935887419605500022}
   m_Layer: 5
   m_Name: 1920 x 1080
   m_TagString: Untagged
@@ -2494,7 +2464,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3935887419605500022}
+      - m_Target: {fileID: 8122944642038701120}
         m_TargetAssemblyTypeName: Resolution, Assembly-CSharp
         m_MethodName: setResolution1080
         m_Mode: 1
@@ -2518,19 +2488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63625d4dee4d9f4983dfed2861a0325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3935887419605500022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3935887419605500016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04e86374fa0ca38488f82aaa0443f571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullscreenToggle: {fileID: 0}
 --- !u!1 &3935887419606408156
 GameObject:
   m_ObjectHideFlags: 0
@@ -3036,7 +2993,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Music
+  m_Text: Mute
 --- !u!1 &3935887419910931127
 GameObject:
   m_ObjectHideFlags: 0

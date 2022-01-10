@@ -25,8 +25,8 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         state = State.PLAYING;
-        checkLevelSettings();
         checkLevelTheme();
+        checkLevelSettings();
     
     }
 
@@ -47,12 +47,11 @@ public class GameManager : Singleton<GameManager>
 
     void checkLevelTheme() {
         if (SceneManager.GetActiveScene().name.ToLower().StartsWith("level") || SceneManager.GetActiveScene().name.Equals("SampleScene")) {
-            AudioManager.Instance.playOneAtATime("BossTheme");
-            // if (PlayerPrefs.GetInt(PlayerPrefsKeys.CURRENT_LEVEL, 1) % 5 == 0) {
-            //     AudioManager.Instance.playOneAtATime("BossTheme");
-            // } else {
-            //     AudioManager.Instance.playOneAtATime("InGameTheme");
-            // }
+            if (PlayerPrefs.GetInt(PlayerPrefsKeys.CURRENT_LEVEL, 1) % 5 == 0) {
+                AudioManager.Instance.playOneAtATime("BossTheme");
+            } else {
+                AudioManager.Instance.playOneAtATime("InGameTheme");
+            }
         } else if (SceneManager.GetActiveScene().name.Equals("MerchantLevel")) {
             AudioManager.Instance.playOneAtATime("MerchantLevelTheme");
         } else {
@@ -140,7 +139,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void defeated() {
-        if (state != State.GAME_OVER) {
+        if (state != State.GAME_OVER && state != State.IS_FINISHING) {
             state = State.GAME_OVER;
             Invoke("showDefeatScreen", 1);
             FindObjectOfType<PlayerController>().killed();
@@ -307,5 +306,16 @@ public class GameManager : Singleton<GameManager>
         AudioManager.Instance.stop("InGameTheme");
         AudioManager.Instance.stop("BossTheme");
         AudioManager.Instance.stop("MenuTheme");
+    }
+
+    public void startDemo() {
+        PlayerPrefs.SetInt(PlayerPrefsKeys.MAX_PLAYER_LEVEL, 5);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.PLAYER_COIN, 100000);
+        
+        goToChooseLevelScene();
+    }
+
+    public void goToMainMenu() {
+        SceneManager.LoadScene("MainMenu");
     }
 }
