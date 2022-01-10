@@ -25,18 +25,24 @@ public class SkillInfos
         higherJump.spritePath = "Sprite/Skills/HigherJump";
         higherJump.name = "higherJump";
         higherJump.cooldownTime = 2;
+        higherJump.price = 2;
+        higherJump.isBought = true;
         higherJump.skillPerformer = new HigherJumpSkillPerformer();
 
         SkillInfo shield = new SkillInfo();
         shield.spritePath = "Sprite/Skills/Shield";
         shield.name = "shield";
         shield.cooldownTime = 7;
+        shield.price = 5;
+        shield.isBought = false;
         shield.skillPerformer = new ShieldSkillPerformer();
 
         SkillInfo higherSpeed = new SkillInfo();
         higherSpeed.spritePath = "Sprite/Skills/HigherSpeed";
         higherSpeed.name = "higherSpeed";
         higherSpeed.cooldownTime = 7;
+        higherSpeed.price = 4;
+        higherSpeed.isBought = true;
         higherSpeed.skillPerformer = new HigherSpeedSkillPerformer();
 
         skillInfos.Add(higherJump);
@@ -47,4 +53,5 @@ public class SkillInfos
     public SkillInfo getBy(string name) {
         return Array.Find<SkillInfo>(skillInfos.ToArray(), x => x.name.ToLower().Equals(name.ToLower()));
     }
+
 }
